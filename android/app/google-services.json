@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "466607729546",
+    "project_id": "kurslar-cee29",
+    "storage_bucket": "kurslar-cee29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466607729546:android:6a2f96ef4c5c69430f3673",
+        "android_client_info": {
+          "package_name": "com.example.kurslar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466607729546-6hgmiutuuukrka9g5d720e2db7op83if.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kurslar",
+            "certificate_hash": "ca7e3a33c65d15dd3a0e75e5e0aa9e8d6a12c879"
+          }
+        },
+        {
+          "client_id": "466607729546-bds0e4s3rf0aspfe4ctvkpihl18kbdm2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwhS294smxe3NVaBuBZtfVeBYlXMOqGus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466607729546-bds0e4s3rf0aspfe4ctvkpihl18kbdm2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
