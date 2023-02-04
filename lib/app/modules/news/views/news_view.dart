@@ -20,8 +20,7 @@ class NewsView extends GetView<NewsController> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.toNamed(Routes.FILTER_COURSES);
-              //controller.getEduCenterPosts();
+              Get.toNamed(Routes.FILTER_NEWS);
             },
             icon: const Icon(
               CupertinoIcons.slider_horizontal_3,

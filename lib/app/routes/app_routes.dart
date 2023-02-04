@@ -10,6 +10,7 @@ abstract class Routes {
   static const SETTINGS = _Paths.SETTINGS;
   static const SPLASH = _Paths.SPLASH;
   static const FILTER_COURSES = _Paths.FILTER_COURSES;
+  static const FILTER_NEWS = _Paths.FILTER_NEWS;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const SETTINGS = '/settings';
   static const SPLASH = '/splash';
   static const FILTER_COURSES = '/filter-courses';
+  static const FILTER_NEWS = '/filter-news';
 }

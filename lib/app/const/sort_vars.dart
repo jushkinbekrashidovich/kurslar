@@ -28,3 +28,9 @@ enum SortByTime {
   Yaqinda,
   Eski
 }
+
+enum SortByTimeNews {
+  Barchasi,
+  Yaqinda,
+  Eski
+}
