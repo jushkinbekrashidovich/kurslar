@@ -6,6 +6,8 @@ class HomeController extends GetxController {
 
   late TextEditingController searchController;
   late final FocusNode focusNode;
+
+  final RxBool is_favorite = false.obs;
   
 
   final count = 0.obs;

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
+import '../modules/filter_courses/bindings/filter_courses_binding.dart';
+import '../modules/filter_courses/views/filter_courses_view.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/main/bindings/main_binding.dart';
 import '../modules/main/views/main_view.dart';
@@ -21,15 +23,21 @@ class AppPages {
   static const INITIAL = Routes.SPLASH;
 
   static final routes = [
-    GetPage(
-      name: _Paths.HOME,
-      page: () => HomeView(),
-      binding: HomeBinding(),
-    ),
+    
     GetPage(
       name: _Paths.MAIN,
       page: () => MainView(),
       binding: MainBinding(),
+    ),
+    GetPage(
+      name: _Paths.FILTER_COURSES,
+      page: () => FilterCoursesView(),
+      binding: FilterCoursesBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME,
+      page: () => HomeView(),
+      binding: HomeBinding(),
     ),
     GetPage(
       name: _Paths.SAVED,
