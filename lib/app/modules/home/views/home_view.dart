@@ -41,6 +41,7 @@ class HomeView extends GetView<HomeController> {
               ],
             ),
             body: Container(
+              margin: EdgeInsets.all(10),
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
