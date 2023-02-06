@@ -20,7 +20,7 @@ class NewsController extends GetxController {
     try {
       newsList.value = await getNews();
     } catch (e) {
-      showErrorSnackbar(e.toString());
+        showErrorSnackbar(e.toString());
     }
     super.onReady();
   }

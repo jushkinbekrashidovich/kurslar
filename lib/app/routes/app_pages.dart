@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/courses_details/bindings/courses_details_binding.dart';
+import '../modules/courses_details/views/courses_details_view.dart';
 import '../modules/filter_courses/bindings/filter_courses_binding.dart';
 import '../modules/filter_courses/views/filter_courses_view.dart';
 import '../modules/filter_news/bindings/filter_news_binding.dart';
@@ -10,6 +12,8 @@ import '../modules/main/bindings/main_binding.dart';
 import '../modules/main/views/main_view.dart';
 import '../modules/news/bindings/news_binding.dart';
 import '../modules/news/views/news_view.dart';
+import '../modules/news_details/bindings/news_details_binding.dart';
+import '../modules/news_details/views/news_details_view.dart';
 import '../modules/saved/bindings/saved_binding.dart';
 import '../modules/saved/views/saved_view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
@@ -64,6 +68,16 @@ class AppPages {
       name: _Paths.FILTER_NEWS,
       page: () => FilterNewsView(),
       binding: FilterNewsBinding(),
+    ),
+    GetPage(
+      name: _Paths.COURSES_DETAILS,
+      page: () => CoursesDetailsView(),
+      binding: CoursesDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.NEWS_DETAILS,
+      page: () => NewsDetailsView(),
+      binding: NewsDetailsBinding(),
     ),
   ];
 }
