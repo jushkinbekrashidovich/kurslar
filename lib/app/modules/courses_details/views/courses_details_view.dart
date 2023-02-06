@@ -1,11 +1,13 @@
-
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kurslar/app/const/custom_widgets/custom_snackbars.dart';
 import 'package:kurslar/app/modules/courses_details/controllers/courses_details_controller.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../const/app_colors.dart';
 import '../../../const/custom_widgets/custom_icon_button.dart';
@@ -19,8 +21,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      (){
+    return Obx(() {
       return Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppBar(
@@ -29,12 +30,21 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
           scrolledUnderElevation: 0.3,
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    await Share.share(
+                        'check out my website https://example.com',
+                        subject: 'Look what I made!');
+                  } catch (e) {
+                    print(e.toString());
+                    showErrorSnackbar(e.toString());
+                  }
+                },
                 icon: const Icon(
                   CupertinoIcons.share,
                   size: 26,
                 )),
-           const SizedBox(
+            const SizedBox(
               width: 2,
             ),
           ],
@@ -72,32 +82,32 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomIconButton(function: ()async{
-                   await MapLauncher.showMarker(
-                      mapType: MapType.google,
-                      title: "ArzonTalim",
-                      coords: Coords(41.338557200966854, 69.33445489587548),
-                      
-                      
-                    );
-
-                  }, icon: Icon(CupertinoIcons.location_solid, color: AppColors.mainColor),
-                  title: "Manzil",
+                  CustomIconButton(
+                    function: () async {
+                      await MapLauncher.showMarker(
+                        mapType: MapType.google,
+                        title: "ArzonTalim",
+                        coords: Coords(41.338557200966854, 69.33445489587548),
+                      );
+                    },
+                    icon: Icon(CupertinoIcons.location_solid,
+                        color: AppColors.mainColor),
+                    title: "Manzil",
                   ),
                   SizedBox(
                     width: 7,
                   ),
                   CustomIconButton(
-                    function:(){
-                      
+                    function: () {
                       return print("heie");
-
-                    } 
+                    }
 
                     //launch("tel//+99899884766432");
 
-                  , icon: Icon(CupertinoIcons.phone_fill_arrow_up_right, color: AppColors.mainColor),
-                  title: "Telefon",
+                    ,
+                    icon: Icon(CupertinoIcons.phone_fill_arrow_up_right,
+                        color: AppColors.mainColor),
+                    title: "Telefon",
                   ),
                 ],
               ),
@@ -109,30 +119,35 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
+              padding:
+                  EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Umumiy",
-                    style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: 19),
+                    style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w500, fontSize: 19),
                   ),
-                 const SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   CustomTitle(
                     title: "O'quv markaz to'liq nomi",
-                   subtitle: "Amazon",
+                    subtitle: "Amazon",
                   ),
-                 const SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  CustomTitle(title: "Na", subtitle:"Yes"),
-                 const SizedBox(
+                  CustomTitle(title: "Na", subtitle: "Yes"),
+                  const SizedBox(
                     height: 20,
                   ),
-                  CustomTitle(title: "Manzil", subtitle:"улица Фурката 1, здание «Таштеплоэнерго», 6 эт."),
-                 const SizedBox(
+                  CustomTitle(
+                      title: "Manzil",
+                      subtitle:
+                          "улица Фурката 1, здание «Таштеплоэнерго», 6 эт."),
+                  const SizedBox(
                     height: 20,
                   ),
                   CustomTitle(title: "hlp", subtitle: "hahah")
@@ -140,7 +155,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only( right: 10, left: 10),
+              padding: EdgeInsets.only(right: 10, left: 10),
               child: DottedLine(
                 dashColor: Color.fromARGB(255, 189, 204, 216),
               ),
@@ -156,36 +171,53 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                   Text(
                     "Tavsif".toUpperCase(),
                     style: TextStyle(
-                        color: Color.fromARGB(255, 189, 204, 216),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13,
-                        ),
+                      color: Color.fromARGB(255, 189, 204, 216),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 13,
+                    ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Text(
-                        "Amazon kompansjsjsjjsjs sjssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssjsjsjjsjjjjjj",
-                        style: GoogleFonts.poppins(
-                          letterSpacing: 0.1,
-                          fontWeight: FontWeight.w500,
-                        ),
-                       maxLines: controller.expand.value?10:3,
-                        overflow: controller.expand.value? TextOverflow.visible:TextOverflow.fade ,
-                        textAlign: TextAlign.start,
-                      ),
-    
+                    "Amazon kompansjsjsjjsjs sjssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssjsjsjjsjjjjjj",
+                    style: GoogleFonts.poppins(
+                      letterSpacing: 0.1,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    maxLines: controller.expand.value ? 10 : 3,
+                    overflow: controller.expand.value
+                        ? TextOverflow.visible
+                        : TextOverflow.fade,
+                    textAlign: TextAlign.start,
+                  ),
                   InkWell(
                     onTap: () {
                       controller.expand.value = !controller.expand.value;
                     },
                     child: Row(
                       children: [
-                        Text("Read more", style: GoogleFonts.poppins(
-                          color: AppColors.mainColor7,
-                          fontSize: 17,
+                        Text(
+                          "Read more",
+                          style: GoogleFonts.poppins(
+                            color: AppColors.mainColor7,
+                            fontSize: 17,
+                          ),
                         ),
+                        const SizedBox(
+                          width: 7,
                         ),
-                       const SizedBox(width: 7,),
-                        controller.expand.value?const Icon(CupertinoIcons.chevron_up, size:18, color: AppColors.mainColor7,):const Icon(CupertinoIcons.chevron_down,color: AppColors.mainColor7,size: 18,)
+                        controller.expand.value
+                            ? const Icon(
+                                CupertinoIcons.chevron_up,
+                                size: 18,
+                                color: AppColors.mainColor7,
+                              )
+                            : const Icon(
+                                CupertinoIcons.chevron_down,
+                                color: AppColors.mainColor7,
+                                size: 18,
+                              )
                       ],
                     ),
                   ),
@@ -198,12 +230,91 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                 dashColor: AppColors.greyColor,
               ),
             ),
-            SizedBox(height: 20,),
-            
-            SizedBox(height: 40,),
+
+            SizedBox(
+              height: 20,
+            ),
+       
+
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              height: 120,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 120,
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                            "assets/telegram.svg",
+                            height: 39,
+                          ),
+                          Text("Telegram"),
+
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 120,
+                        child: Row(
+                          children: [
+                            Icon(
+                            CupertinoIcons.globe,
+                            size: 38,
+                            color: Colors.blue,
+                          ),
+                          Text("Webiste"),
+
+                          ],
+                        ),
+                        
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 120,
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                            "assets/facebook.svg",
+                            height: 39,
+                          ),
+                          Text("Facebook"),
+
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 120,
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                            "assets/instagram.svg",
+                            height: 39,
+                          ),
+                          Text("Instagram"),
+
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            //Icon(CupertinoIcons.inst)
+
+            SizedBox(
+              height: 40,
+            ),
           ],
         ),
-    );}
-    );
+      );
+    });
   }
 }
