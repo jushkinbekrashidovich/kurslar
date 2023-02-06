@@ -4,6 +4,7 @@ class CoursesDetailsController extends GetxController {
   //TODO: Implement CoursesDetailsController
 
   final count = 0.obs;
+  RxBool expand = false.obs;
   @override
   void onInit() {
     super.onInit();
