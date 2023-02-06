@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kurslar/app/const/custom_widgets/custom_text_field.dart';
+import 'package:kurslar/app/data/models/courses_details_argument.dart';
+import 'package:kurslar/app/modules/courses_details/views/courses_details_view.dart';
 
 import '../../../const/app_colors.dart';
 import '../../../routes/app_pages.dart';
@@ -80,7 +82,24 @@ class HomeView extends GetView<HomeController> {
                   ...controller.courses.value.map((element) {
                     return InkWell(
                       onTap: () {
-                        Get.toNamed(Routes.COURSES_DETAILS);
+                        Get.toNamed(
+                          Routes.COURSES_DETAILS, 
+                        arguments: CoursesDetailsArguments(
+                          address: element.address.toString(),
+                          phone_number: element.phone_number.toString(),
+                          school_name: element.school_name.toString(),
+                          description: element.description.toString(),
+                          facebook_link: element.facebook_link.toString(),
+                          website_link: element.website_link.toString(),
+                          instagram_link: element.instagram_link.toString(),
+                          telegram_link: element.telegram_link.toString(),
+                          image_url: element.image_url.toString(),
+                          latitude_location: element.latitude_location,
+                          longtitude_location: element.longtitude_location.toString(),
+                          subjects: element.subjects,
+
+                        ),
+                        );
                       },
                       child: Container(
                         height: 200,

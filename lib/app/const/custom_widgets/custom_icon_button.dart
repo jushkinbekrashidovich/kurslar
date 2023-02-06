@@ -28,8 +28,8 @@ class CustomIconButton extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(9),
         ),
-        height: 50,
-        width: 125,
+        height: 45,
+        width: 110,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -40,9 +40,10 @@ class CustomIconButton extends StatelessWidget {
             Text(
               title,
               style: GoogleFonts.inter(
-                fontSize: 17,
+                fontSize: 15,
                 fontWeight: FontWeight.w500,
               ),
+              textAlign: TextAlign.center,
             )
           ],
         ),

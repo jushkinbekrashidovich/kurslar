@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,13 @@ import '../../../const/custom_widgets/custom_sub_title.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../data/models/courses_details_argument.dart';
+
 class CoursesDetailsView extends GetView<CoursesDetailsController> {
-  const CoursesDetailsView({super.key});
+  final CoursesDetailsArguments arguments;
+
+ const CoursesDetailsView(this.arguments, 
+      {super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +60,21 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
             Container(
               child: Column(
                 children: [
-                  Image.asset(
-                    'assets/youtube.png',
-                    height: 90,
+                  CachedNetworkImage(
+                    height: 70,
+                    width: 60,
+                    imageUrl: arguments.image_url.toString(),
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) =>
+                            CircularProgressIndicator(
+                                color: AppColors.mainColor7,
+                                value: downloadProgress.progress),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                   Container(
                     width: 200,
                     child: Text(
-                      'Cambridge Learning Centre',
+                      arguments.school_name.toString(),
                       style: TextStyle(
                           fontSize: 23,
                           fontWeight: FontWeight.w400,
@@ -72,13 +85,13 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                     ),
                   ),
                   CustomSubtitle(
-                    subtitle: "Qarshi sh. Qashqadaryo vil",
+                    subtitle: arguments.address.toString(),
                   ),
                 ],
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -91,36 +104,33 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                       );
                     },
                     icon: Icon(CupertinoIcons.location_solid,
-                        color: AppColors.mainColor),
+                        size: 19, color: AppColors.mainColor),
                     title: "Manzil",
                   ),
                   SizedBox(
-                    width: 7,
+                    width: 12,
                   ),
                   CustomIconButton(
                     function: () {
                       return print("heie");
-                    }
-
-                    //launch("tel//+99899884766432");
-
-                    ,
+                      //launch("tel//+99899884766432");
+                    },
                     icon: Icon(CupertinoIcons.phone_fill_arrow_up_right,
-                        color: AppColors.mainColor),
+                        size: 19, color: AppColors.mainColor),
                     title: "Telefon",
                   ),
                 ],
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 33, right: 10, left: 10),
+              padding: EdgeInsets.only(top: 23, right: 10, left: 10),
               child: DottedLine(
                 dashColor: Color.fromARGB(255, 189, 204, 216),
               ),
             ),
             Container(
               padding:
-                  EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
+                  EdgeInsets.only(top: 16, left: 10, right: 10, bottom: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -134,42 +144,153 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                   ),
                   CustomTitle(
                     title: "O'quv markaz to'liq nomi",
-                    subtitle: "Amazon",
+                    subtitle: arguments.school_name.toString(),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  CustomTitle(title: "Na", subtitle: "Yes"),
+                  Container(
+                    padding: EdgeInsets.only(right: 5, left: 5),
+                    child: DottedLine(
+                      dashColor: Color.fromARGB(255, 189, 204, 216),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Kurslar".toUpperCase(),
+                    style: const TextStyle(
+                        color: AppColors.greyColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 13),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Wrap(
+                    spacing: 4,
+                    runSpacing: 4,
+                    children: [
+                      Container(
+                        height: 28,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.mainColor7),
+                            borderRadius: BorderRadius.circular(4)),
+                        child: Center(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              "subjects",
+                              style: TextStyle(
+                                  color: AppColors.mainColor7,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12),
+                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 28,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.mainColor7),
+                            borderRadius: BorderRadius.circular(4)),
+                        child: Center(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              "subjects",
+                              style: TextStyle(
+                                  color: AppColors.mainColor7,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12),
+                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(right: 5, left: 5),
+                    child: DottedLine(
+                      dashColor: Color.fromARGB(255, 189, 204, 216),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      showCupertinoDialog(
+                        context: context,
+                        builder: (_) => CupertinoAlertDialog(
+                          title:  SelectableText(
+                            arguments.phone_number.toString(),
+                          ),
+                          content: const Text(
+                              "Iltimos qo'ng'iroq qilyotganingizda ushbu (KURSLAR) ilovasi orqali topganingizni ayting!"),
+                          actions: [
+                            CupertinoButton(
+                                child: Text('OK'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                }),
+                          ],
+                        ),
+                      );
+                    },
+                    child: Container(
+                      child: const CustomTitle(
+                          title: "Telefon Raqami",
+                          subtitle: "+9989*...-to'liq ko'rish uchun bosing"),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(right: 5, left: 5),
+                    child: DottedLine(
+                      dashColor: Color.fromARGB(255, 189, 204, 216),
+                    ),
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
                   CustomTitle(
                       title: "Manzil",
                       subtitle:
-                          "улица Фурката 1, здание «Таштеплоэнерго», 6 эт."),
+                          arguments.address.toString()),
                   const SizedBox(
                     height: 20,
                   ),
-                  CustomTitle(title: "hlp", subtitle: "hahah")
+                  Container(
+                    padding: EdgeInsets.only(right: 5, left: 5),
+                    child: DottedLine(
+                      dashColor: Color.fromARGB(255, 189, 204, 216),
+                    ),
+                  ),
                 ],
               ),
             ),
             Container(
-              padding: EdgeInsets.only(right: 10, left: 10),
-              child: DottedLine(
-                dashColor: Color.fromARGB(255, 189, 204, 216),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Tavsif".toUpperCase(),
+                    "Markaz haqida".toUpperCase(),
                     style: TextStyle(
                       color: Color.fromARGB(255, 189, 204, 216),
                       fontWeight: FontWeight.w500,
@@ -180,7 +301,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                     height: 10,
                   ),
                   Text(
-                    "Amazon kompansjsjsjjsjs sjssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssjsjsjjsjjjjjj",
+                    arguments.description.toString(),
                     style: GoogleFonts.poppins(
                       letterSpacing: 0.1,
                       fontWeight: FontWeight.w500,
@@ -230,12 +351,9 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                 dashColor: AppColors.greyColor,
               ),
             ),
-
             SizedBox(
               height: 20,
             ),
-       
-
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
               height: 120,
@@ -244,62 +362,105 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                 children: [
                   Row(
                     children: [
-                      SizedBox(
-                        width: 120,
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                            "assets/telegram.svg",
-                            height: 39,
+                      InkWell(
+                        onTap: () async {
+                          try {
+                            await launchUrl(Uri.parse(arguments.telegram_link.toString()));
+                          } catch (e) {
+                            showErrorSnackbar(e.toString());
+                          }
+                        },
+                        child: SizedBox(
+                          width: 120,
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                "assets/telegram.svg",
+                                height: 39,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text("Telegram"),
+                            ],
                           ),
-                          Text("Telegram"),
-
-                          ],
                         ),
                       ),
-                      SizedBox(
-                        width: 120,
-                        child: Row(
-                          children: [
-                            Icon(
-                            CupertinoIcons.globe,
-                            size: 38,
-                            color: Colors.blue,
+                      InkWell(
+                        onTap: () async {
+                          try {
+                            await launchUrl(Uri.parse(arguments.website_link.toString()));
+                          } catch (e) {
+                            showErrorSnackbar(e.toString());
+                          }
+                        },
+                        child: const SizedBox(
+                          width: 120,
+                          child: Row(
+                            children: [
+                              Icon(
+                                CupertinoIcons.globe,
+                                size: 38,
+                                color: Colors.blue,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text("Website"),
+                            ],
                           ),
-                          Text("Webiste"),
-
-                          ],
                         ),
-                        
                       ),
                     ],
                   ),
                   Row(
                     children: [
-                      SizedBox(
-                        width: 120,
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                            "assets/facebook.svg",
-                            height: 39,
+                      InkWell(
+                        onTap: () async {
+                          try {
+                            await launchUrl(Uri.parse(arguments.facebook_link.toString()));
+                          } catch (e) {
+                            showErrorSnackbar(e.toString());
+                          }
+                        },
+                        child: SizedBox(
+                          width: 120,
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                "assets/facebook.svg",
+                                height: 39,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text("Facebook"),
+                            ],
                           ),
-                          Text("Facebook"),
-
-                          ],
                         ),
                       ),
-                      SizedBox(
-                        width: 120,
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                            "assets/instagram.svg",
-                            height: 39,
+                      InkWell(
+                        onTap: () async {
+                          try {
+                            await launchUrl(Uri.parse(arguments.instagram_link.toString()));
+                          } catch (e) {
+                            showErrorSnackbar(e.toString());
+                          }
+                        },
+                        child: SizedBox(
+                          width: 120,
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                "assets/instagram.svg",
+                                height: 39,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text("Instagram"),
+                            ],
                           ),
-                          Text("Instagram"),
-
-                          ],
                         ),
                       ),
                     ],
@@ -307,8 +468,6 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                 ],
               ),
             ),
-            //Icon(CupertinoIcons.inst)
-
             SizedBox(
               height: 40,
             ),
