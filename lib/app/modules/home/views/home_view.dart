@@ -21,11 +21,43 @@ class HomeView extends GetView<HomeController> {
           },
           child: Scaffold(
             appBar: AppBar(
-              title: CustomTextField(
-                controller: controller.searchController,
-                focusNode: controller.focusNode,
-                preficicon: CupertinoIcons.search,
-                hintText: "o'quv markaz nomi, fanlar",
+              title: SizedBox(
+                height: 44,
+                child: TextField(
+                  focusNode: controller.focusNode,
+                  keyboardType: TextInputType.text,
+                  controller: controller.searchController,
+                  cursorColor: AppColors.mainColor,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      CupertinoIcons.search,
+                      color: AppColors.mainColor7,
+                    ),
+                    contentPadding: const EdgeInsets.all(12),
+                    filled: true,
+                    fillColor: AppColors.background,
+                    border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        gapPadding: 0,
+                        borderSide: BorderSide.none),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(width: 2, color: AppColors.mainColor),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
+                    hintText: "hintText",
+                    hintStyle: TextStyle(
+                      color: AppColors.grey,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                    ),
+                  ),
+                  onSubmitted: (value) => controller.searchMethod(value),
+                ),
               ),
               centerTitle: true,
               actions: [
@@ -48,6 +80,7 @@ class HomeView extends GetView<HomeController> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
+                  
                   Visibility(
                       visible: controller.isLoading.value,
                       child: Container(
@@ -247,7 +280,7 @@ class HomeView extends GetView<HomeController> {
                         ),
                       ),
                     );
-                  })
+                  }),
                 ],
               ),
             ),

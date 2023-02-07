@@ -9,19 +9,20 @@ class HomeController extends GetxController {
   //TODO: Implement HomeController
   late FirebaseFirestore firebaseFirestore;
 
-  late TextEditingController searchController;
+   TextEditingController searchController = TextEditingController();
   late final FocusNode focusNode;
 
   RxBool isLoading = true.obs;
 
   final courses = <CoursesModel>[].obs;
+  final filteredCourses = <CoursesModel>[].obs;
 
   final RxBool is_favorite = false.obs;
 
   final count = 0.obs;
   @override
   void onInit() {
-    searchController = TextEditingController();
+    
     focusNode = FocusNode();
     firebaseFirestore = FirebaseFirestore.instance;
 
@@ -30,7 +31,6 @@ class HomeController extends GetxController {
 
   @override
   void onReady() async {
-
     isLoading.value = true;
     try {
       courses.value = await getCourses();
@@ -43,20 +43,42 @@ class HomeController extends GetxController {
   }
 
   Future<List<CoursesModel>> getCourses() async {
-
     final List<CoursesModel> coursesModelList = [];
     await firebaseFirestore.collection("courses").get().then((snapshot) {
-       
-       for (var element in snapshot.docs) {
-        
+      for (var element in snapshot.docs) {
         final data = CoursesModel.fromJson(element.data());
-         data.post_id = element.id;
-         coursesModelList.add(data);
+        data.post_id = element.id;
+        coursesModelList.add(data);
       }
     });
     return coursesModelList;
   }
 
-  @override
-  void onClose() {}
+  Future<void> searchMethod(value) async {
+    filteredCourses.clear();
+    firebaseFirestore
+        .collection("courses")
+        .where("school_name", isEqualTo: searchController.text)
+        .get()
+        .then((snapshot) {
+      for (var element in snapshot.docs) {
+        final datas = CoursesModel.fromJson(element.data());
+        datas.post_id = element.id;
+        filteredCourses.add(datas);
+      }
+    });
+  }
+
+   HomeController() {
+    searchController.addListener(() {
+      if (searchController.text.isNotEmpty &&
+          searchController.text.length > 2) {
+        searchMethod(searchController.text);
+      }
+    });
+  }
+
+ 
 }
+
+

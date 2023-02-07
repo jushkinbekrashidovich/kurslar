@@ -43,18 +43,17 @@ class NewsController extends GetxController {
   }
 
   void incrementViews(String postId) async {
-  firebaseFirestore.collection("news").doc(postId).update({
-    "views": FieldValue.increment(1),
-  });
-}
-String formatViewsCount(int views) {
-  if (views >= 1000) {
-    int thousands = views ~/ 1000;
-    int hundreds = views % 1000 ~/ 100;
-    return "$thousands" "." "$hundreds"  "k";
+    firebaseFirestore.collection("news").doc(postId).update({
+      "views": FieldValue.increment(1),
+    });
   }
-  return "$views";
-}
 
-
+  String formatViewsCount(int views) {
+    if (views >= 1000) {
+      int thousands = views ~/ 1000;
+      int hundreds = views % 1000 ~/ 100;
+      return "$thousands" "." "$hundreds" "k";
+    }
+    return "$views";
+  }
 }
