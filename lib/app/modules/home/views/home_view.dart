@@ -132,6 +132,7 @@ class HomeView extends GetView<HomeController> {
                                     errorWidget: (context, url, error) =>
                                         Icon(Icons.error),
                                   ),
+                                  const SizedBox(width: 10,),
 
                                   Column(
                                     crossAxisAlignment:
@@ -140,7 +141,7 @@ class HomeView extends GetView<HomeController> {
                                       SizedBox(
                                         width: 126,
                                         child: Text(
-                                          "Cambridge LC"+element.school_name.toString(),
+                                          element.school_name.toString(),
                                           style: GoogleFonts.poppins(
                                               fontSize: 15,
                                               fontWeight: FontWeight.w500),
@@ -149,19 +150,16 @@ class HomeView extends GetView<HomeController> {
                                         ),
                                       ),
                                       Container(
-                                        //width: 180,
+                                        width: 130,
                                         alignment: Alignment.topLeft,
-                                        child: FittedBox(
-                                          fit: BoxFit.scaleDown,
-                                          child: Text(
-                                            element.address.toString(),
-                                            style: TextStyle(
-                                                color: AppColors.greyColor,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 13),
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
+                                        child: Text(
+                                          element.address.toString(),
+                                          style: TextStyle(
+                                              color: AppColors.greyColor,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 13),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                     ],

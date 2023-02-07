@@ -12,12 +12,7 @@ class NewsDetailsView extends GetView<NewsDetailsController> {
         title: Text('NewsDetailsView'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'NewsDetailsView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: ListView(),
     );
   }
 }

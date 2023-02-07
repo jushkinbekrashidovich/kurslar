@@ -18,6 +18,7 @@ import '../../../const/custom_widgets/custom_sub_title.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../const/widgets/course_short_infos.dart';
 import '../../../data/models/courses_details_argument.dart';
 
 class CoursesDetailsView extends GetView<CoursesDetailsController> {
@@ -59,71 +60,16 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
         ),
         body: ListView(
           children: [
-            Container(
-              child: Column(
-                children: [
-                  CachedNetworkImage(
-                    height: 70,
-                    width: 60,
-                    imageUrl: argument.image_url.toString(),
-                    progressIndicatorBuilder:
-                        (context, url, downloadProgress) =>
-                            CircularProgressIndicator(
-                                color: AppColors.mainColor7,
-                                value: downloadProgress.progress),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
-                  Container(
-                    width: 200,
-                    child: Text(
-                      argument.school_name.toString(),
-                      style: TextStyle(
-                          fontSize: 23,
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: 0.2),
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  CustomSubtitle(
-                    subtitle: argument.address.toString(),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(top: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomIconButton(
-                    function: () async {
-                      await MapLauncher.showMarker(
-                        mapType: MapType.google,
-                        title: "ArzonTalim",
-                        coords: Coords(41.338557200966854, 69.33445489587548),
-                      );
-                    },
-                    icon: Icon(CupertinoIcons.location_solid,
-                        size: 19, color: AppColors.mainColor),
-                    title: "Manzil",
-                  ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  CustomIconButton(
-                    function: () async{
-                      
-                      //return print("heie");
-                     await launch("tel//$argument.phone_number");
-                    },
-                    icon: Icon(CupertinoIcons.phone_fill_arrow_up_right,
-                        size: 19, color: AppColors.mainColor),
-                    title: "Telefon",
-                  ),
-                ],
-              ),
+            
+            CourseShortInfos(
+              address: argument.address,
+              school_name: argument.school_name,
+              phone_number: argument.phone_number,
+              image_url: argument.image_url,
+              latitude_location: argument.latitude_location,
+              longtitude_location: argument.longtitude_location,
+
+              
             ),
             Container(
               padding: EdgeInsets.only(top: 23, right: 10, left: 10),
@@ -203,7 +149,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                         decoration: BoxDecoration(
                             border: Border.all(color: AppColors.mainColor7),
                             borderRadius: BorderRadius.circular(4)),
-                        child: Center(
+                        child: const Center(
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
@@ -239,10 +185,10 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                         context: context,
                         builder: (_) => CupertinoAlertDialog(
                           title:  SelectableText(
-                            argument.phone_number.toString(),
+                            "${argument.phone_number}",
                           ),
                           content: const Text(
-                              "Iltimos qo'ng'iroq qilyotganingizda ushbu (KURSLAR) ilovasi orqali topganingizni ayting!"),
+                              "Iltimos qo'ng'iroq qilyotganingizda ushbu markaz haqida KURSLAR ilovasi orqali topganingizni ayting!"),
                           actions: [
                             CupertinoButton(
                                 child: Text('OK'),
