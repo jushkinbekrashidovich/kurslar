@@ -5,22 +5,28 @@ import 'package:kurslar/app/data/models/courses_details_argument.dart';
 class CoursesDetailsController extends GetxController {
   //TODO: Implement CoursesDetailsController
 
+  //late CoursesDetailsArguments coursesDetailsArguments;
+  
 
   final count = 0.obs;
   RxBool expand = false.obs;
   //late final Uri url;
 
   
-
+ 
 
   @override
   void onInit() {
+    
     
     super.onInit();
   }
 
   @override
   void onReady() {
+    //final coursesDetailsArguments = Get.arguments as CoursesDetailsArguments;
+    
+    
     super.onReady();
   }
 

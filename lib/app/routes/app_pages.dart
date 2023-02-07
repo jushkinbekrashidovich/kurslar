@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:kurslar/app/data/models/courses_details_argument.dart';
 
 import '../modules/courses_details/bindings/courses_details_binding.dart';
 import '../modules/courses_details/views/courses_details_view.dart';
@@ -29,6 +30,12 @@ class AppPages {
   static const INITIAL = Routes.SPLASH;
 
   static final routes = [
+
+    GetPage(
+      name: _Paths.COURSES_DETAILS,
+      page: () =>CoursesDetailsView(),
+      binding: CoursesDetailsBinding(),
+    ),
     GetPage(
       name: _Paths.MAIN,
       page: () => MainView(),
@@ -69,11 +76,7 @@ class AppPages {
       page: () => FilterNewsView(),
       binding: FilterNewsBinding(),
     ),
-    GetPage(
-      name: _Paths.COURSES_DETAILS,
-      page: () => CoursesDetailsView(),
-      binding: CoursesDetailsBinding(),
-    ),
+    
     GetPage(
       name: _Paths.NEWS_DETAILS,
       page: () => NewsDetailsView(),

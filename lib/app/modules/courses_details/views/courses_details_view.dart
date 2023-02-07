@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kurslar/app/const/custom_widgets/custom_snackbars.dart';
+import 'package:kurslar/app/const/widgets/social_media_link.dart';
 import 'package:kurslar/app/modules/courses_details/controllers/courses_details_controller.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -20,13 +21,14 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../data/models/courses_details_argument.dart';
 
 class CoursesDetailsView extends GetView<CoursesDetailsController> {
-  final CoursesDetailsArguments arguments;
+  //final CoursesDetailsArguments arguments;
 
- const CoursesDetailsView(this.arguments, 
-      {super.key,});
+  CoursesDetailsView(  
+      {super.key, });
 
   @override
   Widget build(BuildContext context) {
+    var argument = Get.arguments as CoursesDetailsArguments;
     return Obx(() {
       return Scaffold(
         backgroundColor: AppColors.white,
@@ -63,7 +65,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                   CachedNetworkImage(
                     height: 70,
                     width: 60,
-                    imageUrl: arguments.image_url.toString(),
+                    imageUrl: argument.image_url.toString(),
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) =>
                             CircularProgressIndicator(
@@ -74,7 +76,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                   Container(
                     width: 200,
                     child: Text(
-                      arguments.school_name.toString(),
+                      argument.school_name.toString(),
                       style: TextStyle(
                           fontSize: 23,
                           fontWeight: FontWeight.w400,
@@ -85,7 +87,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                     ),
                   ),
                   CustomSubtitle(
-                    subtitle: arguments.address.toString(),
+                    subtitle: argument.address.toString(),
                   ),
                 ],
               ),
@@ -111,9 +113,10 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                     width: 12,
                   ),
                   CustomIconButton(
-                    function: () {
-                      return print("heie");
-                      //launch("tel//+99899884766432");
+                    function: () async{
+                      
+                      //return print("heie");
+                     await launch("tel//$argument.phone_number");
                     },
                     icon: Icon(CupertinoIcons.phone_fill_arrow_up_right,
                         size: 19, color: AppColors.mainColor),
@@ -144,7 +147,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                   ),
                   CustomTitle(
                     title: "O'quv markaz to'liq nomi",
-                    subtitle: arguments.school_name.toString(),
+                    subtitle: argument.school_name,
                   ),
                   const SizedBox(
                     height: 20,
@@ -236,7 +239,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                         context: context,
                         builder: (_) => CupertinoAlertDialog(
                           title:  SelectableText(
-                            arguments.phone_number.toString(),
+                            argument.phone_number.toString(),
                           ),
                           content: const Text(
                               "Iltimos qo'ng'iroq qilyotganingizda ushbu (KURSLAR) ilovasi orqali topganingizni ayting!"),
@@ -271,7 +274,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                   CustomTitle(
                       title: "Manzil",
                       subtitle:
-                          arguments.address.toString()),
+                          argument.address.toString()),
                   const SizedBox(
                     height: 20,
                   ),
@@ -301,7 +304,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                     height: 10,
                   ),
                   Text(
-                    arguments.description.toString(),
+                    argument.description.toString(),
                     style: GoogleFonts.poppins(
                       letterSpacing: 0.1,
                       fontWeight: FontWeight.w500,
@@ -351,124 +354,16 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                 dashColor: AppColors.greyColor,
               ),
             ),
-            SizedBox(
+           const SizedBox(
               height: 20,
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              height: 120,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Row(
-                    children: [
-                      InkWell(
-                        onTap: () async {
-                          try {
-                            await launchUrl(Uri.parse(arguments.telegram_link.toString()));
-                          } catch (e) {
-                            showErrorSnackbar(e.toString());
-                          }
-                        },
-                        child: SizedBox(
-                          width: 120,
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                "assets/telegram.svg",
-                                height: 39,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text("Telegram"),
-                            ],
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          try {
-                            await launchUrl(Uri.parse(arguments.website_link.toString()));
-                          } catch (e) {
-                            showErrorSnackbar(e.toString());
-                          }
-                        },
-                        child: const SizedBox(
-                          width: 120,
-                          child: Row(
-                            children: [
-                              Icon(
-                                CupertinoIcons.globe,
-                                size: 38,
-                                color: Colors.blue,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text("Website"),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      InkWell(
-                        onTap: () async {
-                          try {
-                            await launchUrl(Uri.parse(arguments.facebook_link.toString()));
-                          } catch (e) {
-                            showErrorSnackbar(e.toString());
-                          }
-                        },
-                        child: SizedBox(
-                          width: 120,
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                "assets/facebook.svg",
-                                height: 39,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text("Facebook"),
-                            ],
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          try {
-                            await launchUrl(Uri.parse(arguments.instagram_link.toString()));
-                          } catch (e) {
-                            showErrorSnackbar(e.toString());
-                          }
-                        },
-                        child: SizedBox(
-                          width: 120,
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                "assets/instagram.svg",
-                                height: 39,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text("Instagram"),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+            SocialMediaLink(
+              instagramLink: argument.instagram_link, 
+              facebookLink: argument.facebook_link, 
+              telegramLink: argument.telegram_link, 
+              websiteLink: argument.website_link,
               ),
-            ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
           ],

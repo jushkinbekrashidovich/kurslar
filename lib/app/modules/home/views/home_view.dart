@@ -84,18 +84,19 @@ class HomeView extends GetView<HomeController> {
                       onTap: () {
                         Get.toNamed(
                           Routes.COURSES_DETAILS, 
-                        arguments: CoursesDetailsArguments(
-                          address: element.address.toString(),
-                          phone_number: element.phone_number.toString(),
-                          school_name: element.school_name.toString(),
-                          description: element.description.toString(),
-                          facebook_link: element.facebook_link.toString(),
-                          website_link: element.website_link.toString(),
-                          instagram_link: element.instagram_link.toString(),
-                          telegram_link: element.telegram_link.toString(),
-                          image_url: element.image_url.toString(),
+                        arguments:
+                         CoursesDetailsArguments(
+                          address: element.address,
+                          phone_number: element.phone_number,
+                          school_name: element.school_name,
+                          description: element.description,
+                          facebook_link: element.facebook_link,
+                          website_link: element.website_link,
+                          instagram_link: element.instagram_link,
+                          telegram_link: element.telegram_link,
+                          image_url: element.image_url,
                           latitude_location: element.latitude_location,
-                          longtitude_location: element.longtitude_location.toString(),
+                          longtitude_location: element.longtitude_location,
                           subjects: element.subjects,
 
                         ),
