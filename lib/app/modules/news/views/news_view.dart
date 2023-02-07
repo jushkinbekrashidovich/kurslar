@@ -38,93 +38,98 @@ class NewsView extends GetView<NewsController> {
               height: 20,
             ),
             ...controller.newsList.map((element) {
-              return Container(
-                padding: EdgeInsets.all(10),
-                height: 120,
-                //margin: EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.white),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 100,
-                      width: 80,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        image: DecorationImage(
-                            image: AssetImage("assets/eg.jpg"),
-                            fit: BoxFit.fill),
+              return InkWell(
+                onTap: (){
+                  Get.toNamed(Routes.NEWS_DETAILS);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  height: 120,
+                  //margin: EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.white),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          image: DecorationImage(
+                              image: AssetImage("assets/eg.jpg"),
+                              fit: BoxFit.fill),
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: 150,
-                          child: Text(
-                            element.title.toString(),
-                            maxLines: 4,
-                            style: GoogleFonts.poppins(
-                                fontSize: 14, fontWeight: FontWeight.w700),
-                            overflow: TextOverflow.ellipsis,
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 150,
+                            child: Text(
+                              element.title.toString(),
+                              maxLines: 4,
+                              style: GoogleFonts.poppins(
+                                  fontSize: 14, fontWeight: FontWeight.w700),
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    CupertinoIcons.time,
-                                    color: AppColors.grey,
-                                    size: 14,
-                                  ),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  Text(
-                                    element.publishedAt.toString(),
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 12, color: AppColors.grey),
-                                  ),
-                                ],
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.time,
+                                      color: AppColors.grey,
+                                      size: 14,
+                                    ),
+                                    SizedBox(
+                                      width: 4,
+                                    ),
+                                    Text(
+                                      element.publishedAt.toString(),
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 12, color: AppColors.grey),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Container(
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    CupertinoIcons.eye,
-                                    color: AppColors.grey,
-                                    size: 14,
-                                  ),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  Text(
-                                    element.views.toString(),
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 12, color: AppColors.grey),
-                                  ),
-                                ],
+                              SizedBox(
+                                width: 20,
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.eye,
+                                      color: AppColors.grey,
+                                      size: 14,
+                                    ),
+                                    SizedBox(
+                                      width: 4,
+                                    ),
+                                    Text(
+                                      element.views.toString(),
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 12, color: AppColors.grey),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               );
             }),
