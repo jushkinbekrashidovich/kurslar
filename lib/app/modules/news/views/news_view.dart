@@ -1,11 +1,14 @@
+import 'dart:math';
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kurslar/app/const/app_colors.dart';
+import 'package:kurslar/app/data/models/news_details_argument.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/news_controller.dart';
@@ -31,16 +34,56 @@ class NewsView extends GetView<NewsController> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
-            SizedBox(
-              height: 20,
-            ),
+            Visibility(
+                visible: controller.isLoading.value,
+                child: Container(
+                  padding: EdgeInsets.all(50),
+                  //width: 85.w,
+                  child: Container(
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(12 * 1.0),
+                      ),
+                      child: const Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            CircularProgressIndicator(
+                              color: AppColors.mainColor,
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            Text(
+                              "Loading",
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      )),
+                )),
+            
             ...controller.newsList.map((element) {
+              String viewsCount = controller.formatViewsCount(element.views!.toInt());
+
               return InkWell(
-                onTap: (){
-                  Get.toNamed(Routes.NEWS_DETAILS);
+                onTap: () {
+                  controller.incrementViews(element.postId.toString());
+                  Get.toNamed(
+                    Routes.NEWS_DETAILS,
+                    arguments: NewsDetailsArgument(
+                      title: element.title,
+                      description: element.description,
+                      imageUrl: element.imageUrl,
+                      publishedAt: element.publishedAt,
+                      credits: element.credits,
+                      views: element.views.toString(),
+                    ),
+                  );
                 },
                 child: Container(
                   padding: EdgeInsets.all(10),
@@ -54,12 +97,24 @@ class NewsView extends GetView<NewsController> {
                     children: [
                       Container(
                         height: 100,
-                        width: 80,
+                          width: 100,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-                          image: DecorationImage(
-                              image: AssetImage("assets/eg.jpg"),
-                              fit: BoxFit.fill),
+                          borderRadius: BorderRadius.circular(7),
+                          color: Colors.grey,
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: CachedNetworkImage(
+                          fit: BoxFit.fill,
+                          
+                          height: 100,
+                          width: 100,
+                          imageUrl: element.imageUrl.toString(),
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) =>
+                                  CircularProgressIndicator(
+                                      color: AppColors.mainColor7,
+                                      value: downloadProgress.progress),
+                          errorWidget: (context, url, error) => Icon(Icons.error),
                         ),
                       ),
                       SizedBox(
@@ -116,8 +171,9 @@ class NewsView extends GetView<NewsController> {
                                     SizedBox(
                                       width: 4,
                                     ),
+                                   
                                     Text(
-                                      element.views.toString(),
+                                     viewsCount.toString(),
                                       style: GoogleFonts.poppins(
                                           fontSize: 12, color: AppColors.grey),
                                     ),

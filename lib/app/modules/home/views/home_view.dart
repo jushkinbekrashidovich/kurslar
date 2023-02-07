@@ -83,28 +83,26 @@ class HomeView extends GetView<HomeController> {
                     return InkWell(
                       onTap: () {
                         Get.toNamed(
-                          Routes.COURSES_DETAILS, 
-                        arguments:
-                         CoursesDetailsArguments(
-                          address: element.address,
-                          phone_number: element.phone_number,
-                          school_name: element.school_name,
-                          description: element.description,
-                          facebook_link: element.facebook_link,
-                          website_link: element.website_link,
-                          instagram_link: element.instagram_link,
-                          telegram_link: element.telegram_link,
-                          image_url: element.image_url,
-                          latitude_location: element.latitude_location,
-                          longtitude_location: element.longtitude_location,
-                          subjects: element.subjects,
-
-                        ),
+                          Routes.COURSES_DETAILS,
+                          arguments: CoursesDetailsArguments(
+                            address: element.address,
+                            phone_number: element.phone_number,
+                            school_name: element.school_name,
+                            description: element.description,
+                            facebook_link: element.facebook_link,
+                            website_link: element.website_link,
+                            instagram_link: element.instagram_link,
+                            telegram_link: element.telegram_link,
+                            image_url: element.image_url,
+                            latitude_location: element.latitude_location,
+                            longtitude_location: element.longtitude_location,
+                            subjects: element.subjects,
+                          ),
                         );
                       },
                       child: Container(
                         height: 200,
-                        width: 280,
+                        //width: 280,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
@@ -119,20 +117,31 @@ class HomeView extends GetView<HomeController> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   //SizedBox(width: 2,),
-                                  CachedNetworkImage(
-                                    height: 70,
-                                    width: 60,
-                                    imageUrl:
-                                        element.image_url.toString(),
-                                    progressIndicatorBuilder: (context, url,
-                                            downloadProgress) =>
-                                        CircularProgressIndicator(
-                                          color: AppColors.mainColor7,
-                                            value: downloadProgress.progress),
-                                    errorWidget: (context, url, error) =>
-                                        Icon(Icons.error),
+                                  Container(
+                                    height: 80,
+                                    width: 70,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(7),
+                                      color: Colors.white,
+                                    ),
+                                    clipBehavior: Clip.antiAlias,
+                                    child: CachedNetworkImage(
+                                      fit: BoxFit.fill,
+                                      height: 70,
+                                      width: 60,
+                                      imageUrl: element.image_url.toString(),
+                                      progressIndicatorBuilder: (context, url,
+                                              downloadProgress) =>
+                                          CircularProgressIndicator(
+                                              color: AppColors.mainColor7,
+                                              value: downloadProgress.progress),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(Icons.error),
+                                    ),
                                   ),
-                                  const SizedBox(width: 10,),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
 
                                   Column(
                                     crossAxisAlignment:

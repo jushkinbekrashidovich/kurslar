@@ -6,7 +6,7 @@ class NewsModel {
   String? description;
   String? credits;
   String? publishedAt;
-  String? views;
+  int? views;
 
   NewsModel(
       {this.credits,

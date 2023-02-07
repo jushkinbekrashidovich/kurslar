@@ -17,11 +17,13 @@ class NewsController extends GetxController {
 
   @override
   void onReady() async {
+    isLoading.value = true;
     try {
       newsList.value = await getNews();
     } catch (e) {
-        showErrorSnackbar(e.toString());
+      showErrorSnackbar(e.toString());
     }
+    isLoading.value = false;
     super.onReady();
   }
 
@@ -39,4 +41,20 @@ class NewsController extends GetxController {
     });
     return newsModel;
   }
+
+  void incrementViews(String postId) async {
+  firebaseFirestore.collection("news").doc(postId).update({
+    "views": FieldValue.increment(1),
+  });
+}
+String formatViewsCount(int views) {
+  if (views >= 1000) {
+    int thousands = views ~/ 1000;
+    int hundreds = views % 1000 ~/ 100;
+    return "$thousands" "." "$hundreds"  "k";
+  }
+  return "$views";
+}
+
+
 }
