@@ -72,6 +72,14 @@ class HomeController extends GetxController {
       filteredCourses.value = courses.value;
     }
   }
+  
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    searchController.dispose();
+    focusNode.dispose();
+    super.dispose();
+  }
 
   
 }
