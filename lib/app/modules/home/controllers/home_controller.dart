@@ -9,13 +9,13 @@ class HomeController extends GetxController {
   //TODO: Implement HomeController
   late FirebaseFirestore firebaseFirestore;
 
-   TextEditingController searchController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
   late final FocusNode focusNode;
 
   RxBool isLoading = true.obs;
 
   final courses = <CoursesModel>[].obs;
-  final filteredCourses = <CoursesModel>[].obs;
+  
 
   final RxBool is_favorite = false.obs;
 
@@ -54,29 +54,7 @@ class HomeController extends GetxController {
     return coursesModelList;
   }
 
-  Future<void> searchMethod(value) async {
-    filteredCourses.clear();
-    firebaseFirestore
-        .collection("courses")
-        .where("school_name", isEqualTo: searchController.text)
-        .get()
-        .then((snapshot) {
-      for (var element in snapshot.docs) {
-        final datas = CoursesModel.fromJson(element.data());
-        datas.post_id = element.id;
-        filteredCourses.add(datas);
-      }
-    });
-  }
 
-   HomeController() {
-    searchController.addListener(() {
-      if (searchController.text.isNotEmpty &&
-          searchController.text.length > 2) {
-        searchMethod(searchController.text);
-      }
-    });
-  }
 
  
 }

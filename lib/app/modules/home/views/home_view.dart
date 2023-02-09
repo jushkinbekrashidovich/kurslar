@@ -13,6 +13,8 @@ import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+  const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => GestureDetector(
@@ -28,15 +30,15 @@ class HomeView extends GetView<HomeController> {
                   keyboardType: TextInputType.text,
                   controller: controller.searchController,
                   cursorColor: AppColors.mainColor,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     prefixIcon: Icon(
                       CupertinoIcons.search,
                       color: AppColors.mainColor7,
                     ),
-                    contentPadding: const EdgeInsets.all(12),
+                    contentPadding:  EdgeInsets.all(12),
                     filled: true,
                     fillColor: AppColors.background,
-                    border: const OutlineInputBorder(
+                    border:  OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(10),
                         ),
@@ -56,7 +58,6 @@ class HomeView extends GetView<HomeController> {
                       fontSize: 14,
                     ),
                   ),
-                  onSubmitted: (value) => controller.searchMethod(value),
                 ),
               ),
               centerTitle: true,
@@ -196,7 +197,7 @@ class HomeView extends GetView<HomeController> {
                                         alignment: Alignment.topLeft,
                                         child: Text(
                                           element.address.toString(),
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: AppColors.greyColor,
                                               fontWeight: FontWeight.w500,
                                               fontSize: 13),
@@ -225,7 +226,7 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                             const SizedBox(
                                 height: 15,
                               ),
                               Wrap(
@@ -249,7 +250,7 @@ class HomeView extends GetView<HomeController> {
                                           fit: BoxFit.scaleDown,
                                           child: Text(
                                             subjects,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: AppColors.mainColor7,
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 12),
@@ -262,7 +263,7 @@ class HomeView extends GetView<HomeController> {
                                     );
                                   }),
                                   element.subjects!.length >= 7
-                                      ? Text(
+                                      ? const Text(
                                           'and more...',
                                           style: TextStyle(
                                               color: AppColors.mainColor7,
@@ -272,7 +273,7 @@ class HomeView extends GetView<HomeController> {
                                       : Container()
                                 ],
                               ),
-                              SizedBox(
+                             const SizedBox(
                                 height: 4,
                               ),
                             ],
