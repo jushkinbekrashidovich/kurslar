@@ -15,14 +15,13 @@ class HomeController extends GetxController {
   RxBool isLoading = true.obs;
 
   final courses = <CoursesModel>[].obs;
-  
 
-  final RxBool is_favorite = false.obs;
+  final filteredCourses = <CoursesModel>[].obs;
 
-  final count = 0.obs;
+  final RxBool isFavorite = false.obs;
+
   @override
   void onInit() {
-    
     focusNode = FocusNode();
     firebaseFirestore = FirebaseFirestore.instance;
 
@@ -34,6 +33,7 @@ class HomeController extends GetxController {
     isLoading.value = true;
     try {
       courses.value = await getCourses();
+      filteredCourses.value = courses.value;
     } catch (e) {
       print(e.toString());
       showErrorSnackbar(e.toString());
@@ -54,9 +54,24 @@ class HomeController extends GetxController {
     return coursesModelList;
   }
 
+  Future<void> filterSearchResults(String query) async {
+    List<CoursesModel> searchList = <CoursesModel>[];
+    searchList.addAll(courses.value);
+    if (query.isNotEmpty) {
+      List<CoursesModel> dummyListData = <CoursesModel>[];
+      searchList.forEach((item) {
+        if (item.school_name
+            .toString()
+            .toLowerCase()
+            .contains(query.toLowerCase())) {
+          dummyListData.add(item);
+        }
+      });
+      filteredCourses.value = dummyListData;
+    } else {
+      filteredCourses.value = courses.value;
+    }
+  }
 
-
- 
+  
 }
-
-

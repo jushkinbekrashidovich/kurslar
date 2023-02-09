@@ -24,8 +24,9 @@ import '../../../data/models/courses_details_argument.dart';
 class CoursesDetailsView extends GetView<CoursesDetailsController> {
   //final CoursesDetailsArguments arguments;
 
-  CoursesDetailsView(  
-      {super.key, });
+  CoursesDetailsView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +61,6 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
         ),
         body: ListView(
           children: [
-            
             CourseShortInfos(
               address: argument.address,
               school_name: argument.school_name,
@@ -68,8 +68,6 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
               image_url: argument.image_url,
               latitude_location: argument.latitude_location,
               longtitude_location: argument.longtitude_location,
-
-              
             ),
             Container(
               padding: EdgeInsets.only(top: 23, right: 10, left: 10),
@@ -117,55 +115,38 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                   SizedBox(
                     height: 10,
                   ),
-                  Wrap(
-                    spacing: 4,
-                    runSpacing: 4,
-                    children: [
-                      Container(
-                        height: 28,
-                        width: 80,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.mainColor7),
-                            borderRadius: BorderRadius.circular(4)),
-                        child: Center(
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              "subjects",
-                              style: TextStyle(
-                                  color: AppColors.mainColor7,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12),
-                              textAlign: TextAlign.center,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 28,
-                        width: 80,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.mainColor7),
-                            borderRadius: BorderRadius.circular(4)),
-                        child: const Center(
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              "subjects",
-                              style: TextStyle(
-                                  color: AppColors.mainColor7,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12),
-                              textAlign: TextAlign.center,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                 
+                      Wrap(
+                        spacing: 4,
+                        runSpacing: 4,
+                        children: [
+                          ...(argument.subjects!)
+                              .map((subjects) {
+                            return Container(
+                              height: 28,
+                              width: 80,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: AppColors.mainColor7),
+                                  borderRadius: BorderRadius.circular(4)),
+                              child: Center(
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    subjects,
+                                    style: const TextStyle(
+                                        color: AppColors.mainColor7,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12),
+                                    textAlign: TextAlign.center,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                        ],
                   ),
                   const SizedBox(
                     height: 20,
@@ -184,7 +165,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                       showCupertinoDialog(
                         context: context,
                         builder: (_) => CupertinoAlertDialog(
-                          title:  SelectableText(
+                          title: SelectableText(
                             "${argument.phone_number}",
                           ),
                           content: const Text(
@@ -218,9 +199,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                     height: 20,
                   ),
                   CustomTitle(
-                      title: "Manzil",
-                      subtitle:
-                          argument.address.toString()),
+                      title: "Manzil", subtitle: argument.address.toString()),
                   const SizedBox(
                     height: 20,
                   ),
@@ -300,15 +279,15 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                 dashColor: AppColors.greyColor,
               ),
             ),
-           const SizedBox(
+            const SizedBox(
               height: 20,
             ),
             SocialMediaLink(
-              instagramLink: argument.instagram_link, 
-              facebookLink: argument.facebook_link, 
-              telegramLink: argument.telegram_link, 
+              instagramLink: argument.instagram_link,
+              facebookLink: argument.facebook_link,
+              telegramLink: argument.telegram_link,
               websiteLink: argument.website_link,
-              ),
+            ),
             const SizedBox(
               height: 40,
             ),
