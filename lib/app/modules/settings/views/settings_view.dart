@@ -5,6 +5,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kurslar/app/const/app_colors.dart';
 import 'package:kurslar/app/const/custom_widgets/custom_list_tile_widget.dart';
+import 'package:kurslar/app/const/custom_widgets/custom_snackbars.dart';
+import 'package:kurslar/app/routes/app_pages.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../controllers/settings_controller.dart';
 import 'package:dotted_line/dotted_line.dart';
@@ -29,7 +32,6 @@ class SettingsView extends GetView<SettingsController> {
                 color: AppColors.white,
                 borderRadius: BorderRadius.circular(10),
                 gradient: LinearGradient(
-                  
                   colors: [
                     Colors.blue,
                     Colors.pink.shade300,
@@ -44,7 +46,10 @@ class SettingsView extends GetView<SettingsController> {
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                 ),
                 trailing: Icon(CupertinoIcons.forward),
-                subtitle: Text("Biz bilan bog'laning!", style: TextStyle(color: AppColors.black),),
+                subtitle: Text(
+                  "Biz bilan bog'laning!",
+                  style: TextStyle(color: AppColors.black),
+                ),
                 leading: RawMaterialButton(
                   constraints: BoxConstraints(maxHeight: 40, maxWidth: 40),
                   onPressed: () {},
@@ -107,15 +112,7 @@ class SettingsView extends GetView<SettingsController> {
               child: Column(
                 children: [
                   CustomListTile(
-                      title: "Ilova haqida",
-                      leading: CupertinoIcons.star,
-                      function: () {}),
-                  CustomListTile(
                       title: "Tez so'raladigan savollar",
-                      leading: CupertinoIcons.star,
-                      function: () {}),
-                  CustomListTile(
-                      title: "Rate the app",
                       leading: CupertinoIcons.star,
                       function: () {}),
                   CustomListTile(
@@ -125,10 +122,27 @@ class SettingsView extends GetView<SettingsController> {
                   CustomListTile(
                       title: "Share the app",
                       leading: CupertinoIcons.share,
-                      function: () {}),
+                      function: () async {
+                        try {
+                          await Share.share(
+                              'check out my website https://example.com',
+                              subject: 'Look what I made!');
+                        } catch (e) {
+                          print(e.toString());
+                          showErrorSnackbar(e.toString());
+                        }
+                      }),
+                  CustomListTile(
+                      title: "App info",
+                      leading: CupertinoIcons.info,
+                      function: () {
+                        Get.toNamed(Routes.ABOUT_APP);
+                      }),
+                      
                 ],
               ),
             ),
+            SizedBox(height: 20,)
           ],
         ),
       ),

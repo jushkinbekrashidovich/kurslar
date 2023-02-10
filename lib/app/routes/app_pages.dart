@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
-import 'package:kurslar/app/data/models/courses_details_argument.dart';
 
+import '../data/models/courses_details_argument.dart';
+import '../modules/about_app/bindings/about_app_binding.dart';
+import '../modules/about_app/views/about_app_view.dart';
 import '../modules/courses_details/bindings/courses_details_binding.dart';
 import '../modules/courses_details/views/courses_details_view.dart';
 import '../modules/filter_courses/bindings/filter_courses_binding.dart';
@@ -30,10 +32,9 @@ class AppPages {
   static const INITIAL = Routes.SPLASH;
 
   static final routes = [
-
     GetPage(
       name: _Paths.COURSES_DETAILS,
-      page: () =>CoursesDetailsView(),
+      page: () => CoursesDetailsView(),
       binding: CoursesDetailsBinding(),
     ),
     GetPage(
@@ -76,11 +77,15 @@ class AppPages {
       page: () => FilterNewsView(),
       binding: FilterNewsBinding(),
     ),
-    
     GetPage(
       name: _Paths.NEWS_DETAILS,
       page: () => NewsDetailsView(),
       binding: NewsDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.ABOUT_APP,
+      page: () => AboutAppView(),
+      binding: AboutAppBinding(),
     ),
   ];
 }

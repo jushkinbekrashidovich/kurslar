@@ -13,6 +13,7 @@ abstract class Routes {
   static const FILTER_NEWS = _Paths.FILTER_NEWS;
   static const COURSES_DETAILS = _Paths.COURSES_DETAILS;
   static const NEWS_DETAILS = _Paths.NEWS_DETAILS;
+  static const ABOUT_APP = _Paths.ABOUT_APP;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const FILTER_NEWS = '/filter-news';
   static const COURSES_DETAILS = '/courses-details';
   static const NEWS_DETAILS = '/news-details';
+  static const ABOUT_APP = '/about-app';
 }
