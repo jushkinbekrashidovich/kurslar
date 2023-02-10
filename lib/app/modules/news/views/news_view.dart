@@ -20,18 +20,18 @@ class NewsView extends GetView<NewsController> {
       appBar: AppBar(
         title: Text('Yangilik va maqolalar'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.toNamed(Routes.FILTER_NEWS);
-            },
-            icon: const Icon(
-              CupertinoIcons.slider_horizontal_3,
-              weight: 10,
-              color: AppColors.mainColor,
-            ),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       Get.toNamed(Routes.FILTER_NEWS);
+        //     },
+        //     icon: const Icon(
+        //       CupertinoIcons.slider_horizontal_3,
+        //       weight: 10,
+        //       color: AppColors.mainColor,
+        //     ),
+        //   ),
+        // ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),

@@ -52,7 +52,7 @@ class HomeView extends GetView<HomeController> {
                         Radius.circular(10),
                       ),
                     ),
-                    hintText: "hintText",
+                    hintText: "Manzil/fan nomi orqali qidiring",
                     hintStyle: TextStyle(
                       color: AppColors.grey,
                       fontWeight: FontWeight.w400,
@@ -62,21 +62,21 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               centerTitle: true,
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    //print("printed:"+controller.filteredCourses.length.toString());
-                    Get.toNamed(Routes.FILTER_COURSES);
-                    controller.courses.first.toString();
-                    //controller.getEduCenterPosts();
-                  },
-                  icon: const Icon(
-                    CupertinoIcons.slider_horizontal_3,
-                    weight: 10,
-                    color: AppColors.mainColor,
-                  ),
-                ),
-              ],
+              // actions: [
+              //   IconButton(
+              //     onPressed: () {
+              //       //print("printed:"+controller.filteredCourses.length.toString());
+              //       Get.toNamed(Routes.FILTER_COURSES);
+              //       controller.courses.first.toString();
+              //       //controller.getEduCenterPosts();
+              //     },
+              //     icon: const Icon(
+              //       CupertinoIcons.slider_horizontal_3,
+              //       weight: 10,
+              //       color: AppColors.mainColor,
+              //     ),
+              //   ),
+              // ],
             ),
             body: Container(
               margin: EdgeInsets.all(10),

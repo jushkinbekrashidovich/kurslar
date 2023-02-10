@@ -63,7 +63,9 @@ class HomeController extends GetxController {
         if (item.school_name
             .toString()
             .toLowerCase()
-            .contains(query.toLowerCase())) {
+            .contains(query.toLowerCase()) ||  item.address.toString().toLowerCase().contains(query.toLowerCase())
+            ||  item.subjects!.any((subject) => subject.toLowerCase().contains(query.toLowerCase()))
+            ) {
           dummyListData.add(item);
         }
       });

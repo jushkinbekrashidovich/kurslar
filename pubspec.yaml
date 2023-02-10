@@ -23,6 +23,7 @@ dependencies:
   url_launcher: ^6.1.8
   cached_network_image: ^3.2.3
   share_plus: ^6.3.0
+  geolocator: ^9.0.2
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
