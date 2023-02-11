@@ -17,6 +17,8 @@ import '../modules/news/bindings/news_binding.dart';
 import '../modules/news/views/news_view.dart';
 import '../modules/news_details/bindings/news_details_binding.dart';
 import '../modules/news_details/views/news_details_view.dart';
+import '../modules/rate_app/bindings/rate_app_binding.dart';
+import '../modules/rate_app/views/rate_app_view.dart';
 import '../modules/saved/bindings/saved_binding.dart';
 import '../modules/saved/views/saved_view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
@@ -86,6 +88,11 @@ class AppPages {
       name: _Paths.ABOUT_APP,
       page: () => AboutAppView(),
       binding: AboutAppBinding(),
+    ),
+    GetPage(
+      name: _Paths.RATE_APP,
+      page: () => RateAppView(),
+      binding: RateAppBinding(),
     ),
   ];
 }
