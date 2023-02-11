@@ -41,21 +41,21 @@ class SettingsView extends GetView<SettingsController> {
                 ),
               ),
               child: ListTile(
-                title: Text(
+                title: const Text(
                   "O'quv markaz vakilimisiz?",
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                 ),
-                trailing: Icon(CupertinoIcons.forward),
-                subtitle: Text(
+                trailing: const Icon(CupertinoIcons.forward),
+                subtitle: const Text(
                   "Biz bilan bog'laning!",
                   style: TextStyle(color: AppColors.black),
                 ),
                 leading: RawMaterialButton(
-                  constraints: BoxConstraints(maxHeight: 40, maxWidth: 40),
+                  constraints: const BoxConstraints(maxHeight: 40, maxWidth: 40),
                   onPressed: () {},
                   elevation: 0.0,
                   fillColor: AppColors.background,
-                  child: Icon(
+                  child:  Icon(
                     CupertinoIcons.person,
                     size: 20,
                   ),
@@ -64,7 +64,7 @@ class SettingsView extends GetView<SettingsController> {
                 ),
               ),
             ),
-            SizedBox(
+           const SizedBox(
               height: 20,
             ),
             Text(
@@ -72,7 +72,7 @@ class SettingsView extends GetView<SettingsController> {
               style: GoogleFonts.urbanist(
                   fontWeight: FontWeight.w600, fontSize: 15),
             ),
-            SizedBox(
+           const SizedBox(
               height: 10,
             ),
             Container(
@@ -93,7 +93,7 @@ class SettingsView extends GetView<SettingsController> {
                 ],
               ),
             ),
-            SizedBox(
+           const SizedBox(
               height: 30,
             ),
             Text(
@@ -101,7 +101,7 @@ class SettingsView extends GetView<SettingsController> {
               style: GoogleFonts.urbanist(
                   fontWeight: FontWeight.w600, fontSize: 15),
             ),
-            SizedBox(
+           const SizedBox(
               height: 10,
             ),
             Container(
@@ -142,7 +142,7 @@ class SettingsView extends GetView<SettingsController> {
                 ],
               ),
             ),
-            SizedBox(height: 20,)
+           const SizedBox(height: 20,)
           ],
         ),
       ),

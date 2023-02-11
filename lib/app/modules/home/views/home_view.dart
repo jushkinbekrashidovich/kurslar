@@ -176,35 +176,43 @@ class HomeView extends GetView<HomeController> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           //SizedBox(width: 2,),
-                                          Container(
-                                            height: 80,
-                                            width: 70,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(7),
-                                              color: Colors.white,
-                                            ),
-                                            clipBehavior: Clip.antiAlias,
-                                            child: CachedNetworkImage(
-                                              fit: BoxFit.fill,
-                                              height: 70,
-                                              width: 60,
-                                              imageUrl: controller
-                                                  .filteredCourses[index]
-                                                  .image_url
-                                                  .toString(),
-                                              progressIndicatorBuilder:
-                                                  (context, url,
-                                                          downloadProgress) =>
-                                                      CircularProgressIndicator(
-                                                          color: AppColors
-                                                              .mainColor7,
-                                                          value:
-                                                              downloadProgress
-                                                                  .progress),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      Icon(Icons.error),
+                                          Hero(
+                                            transitionOnUserGestures: true,
+                                            tag:
+                                                "courses${controller.filteredCourses[index].image_url.toString()}",
+                                            child: Container(
+                                              height: 80,
+                                              width: 70,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(7),
+                                                color: Colors.white,
+                                              ),
+                                              clipBehavior: Clip.antiAlias,
+                                              child: CachedNetworkImage(
+                                                
+                                                fit: BoxFit.fill,
+                                                height: 70,
+                                                width: 60,
+                                                imageUrl: controller
+                                                    .filteredCourses[index]
+                                                    .image_url
+                                                    .toString(),
+                                                    
+                                                progressIndicatorBuilder:
+                                                    (context, url,
+                                                            downloadProgress) =>
+                                                        CircularProgressIndicator(
+                                                            color: AppColors
+                                                                .mainColor7,
+                                                            value:
+                                                                downloadProgress
+                                                                    .progress),
+                                                                  
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        Icon(Icons.error),
+                                              ),
                                             ),
                                           ),
                                           const SizedBox(

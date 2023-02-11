@@ -62,6 +62,8 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
         body: ListView(
           children: [
             CourseShortInfos(
+              tag:
+                  "courses${argument.image_url.toString()}",
               address: argument.address,
               school_name: argument.school_name,
               phone_number: argument.phone_number,
@@ -115,38 +117,35 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                   SizedBox(
                     height: 10,
                   ),
-                 
-                      Wrap(
-                        spacing: 4,
-                        runSpacing: 4,
-                        children: [
-                          ...(argument.subjects!)
-                              .map((subjects) {
-                            return Container(
-                              height: 28,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: AppColors.mainColor7),
-                                  borderRadius: BorderRadius.circular(4)),
-                              child: Center(
-                                child: FittedBox(
-                                  fit: BoxFit.scaleDown,
-                                  child: Text(
-                                    subjects,
-                                    style: const TextStyle(
-                                        color: AppColors.mainColor7,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 12),
-                                    textAlign: TextAlign.center,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
+                  Wrap(
+                    spacing: 4,
+                    runSpacing: 4,
+                    children: [
+                      ...(argument.subjects!).map((subjects) {
+                        return Container(
+                          height: 28,
+                          width: 80,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: AppColors.mainColor7),
+                              borderRadius: BorderRadius.circular(4)),
+                          child: Center(
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                subjects,
+                                style: const TextStyle(
+                                    color: AppColors.mainColor7,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12),
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                            );
-                          }),
-                        ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ],
                   ),
                   const SizedBox(
                     height: 20,

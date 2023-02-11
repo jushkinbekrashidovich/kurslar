@@ -12,14 +12,14 @@ import '../custom_widgets/custom_icon_button.dart';
 import '../custom_widgets/custom_sub_title.dart';
 
 class CourseShortInfos extends StatelessWidget {
-  const CourseShortInfos({super.key, required this.image_url,  required this.school_name, required this.address,required this.latitude_location, required this.longtitude_location, required this.phone_number});
+  const CourseShortInfos({super.key, required this.image_url,  required this.school_name, required this.address,required this.latitude_location, required this.longtitude_location, required this.phone_number, this.tag});
   final String? image_url;
   final String? school_name;
   final String? address;
   final String? latitude_location;
   final String? longtitude_location;
   final String? phone_number;
-
+  final String? tag;
 
 
   @override
@@ -29,15 +29,18 @@ class CourseShortInfos extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        CachedNetworkImage(
-          height: 70,
-          width: 60,
-          imageUrl: image_url.toString(),
-          progressIndicatorBuilder: (context, url, downloadProgress) =>
-              CircularProgressIndicator(
-                  color: AppColors.mainColor7,
-                  value: downloadProgress.progress),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+        Hero(
+          tag:tag! ,
+          child: CachedNetworkImage(
+            height: 70,
+            width: 60,
+            imageUrl: image_url.toString(),
+            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                CircularProgressIndicator(
+                    color: AppColors.mainColor7,
+                    value: downloadProgress.progress),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          ),
         ),
         SizedBox(
           height: 10,
