@@ -52,7 +52,9 @@ class SettingsView extends GetView<SettingsController> {
                 ),
                 leading: RawMaterialButton(
                   constraints: const BoxConstraints(maxHeight: 40, maxWidth: 40),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(Routes.CONTACT_INFO);
+                  },
                   elevation: 0.0,
                   fillColor: AppColors.background,
                   child:  Icon(

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import '../data/models/courses_details_argument.dart';
 import '../modules/about_app/bindings/about_app_binding.dart';
 import '../modules/about_app/views/about_app_view.dart';
+import '../modules/contact_info/bindings/contact_info_binding.dart';
+import '../modules/contact_info/views/contact_info_view.dart';
 import '../modules/courses_details/bindings/courses_details_binding.dart';
 import '../modules/courses_details/views/courses_details_view.dart';
 import '../modules/filter_courses/bindings/filter_courses_binding.dart';
@@ -93,6 +95,11 @@ class AppPages {
       name: _Paths.RATE_APP,
       page: () => RateAppView(),
       binding: RateAppBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONTACT_INFO,
+      page: () => ContactInfoView(),
+      binding: ContactInfoBinding(),
     ),
   ];
 }

@@ -31,7 +31,7 @@ class HomeView extends GetView<HomeController> {
                   keyboardType: TextInputType.text,
                   controller: controller.searchController,
                   cursorColor: AppColors.mainColor,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     prefixIcon: Icon(
                       CupertinoIcons.search,
                       color: AppColors.mainColor7,
@@ -79,7 +79,7 @@ class HomeView extends GetView<HomeController> {
               // ],
             ),
             body: Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               alignment: Alignment.topCenter,
               child: Column(children: [
                 Visibility(
@@ -88,7 +88,7 @@ class HomeView extends GetView<HomeController> {
                       //padding: EdgeInsets.all(50),
                       //width: 85.w,
                       child: Container(
-                          padding: EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(15),
                           //width: double.infinity,
                           height: 200,
                           decoration: BoxDecoration(
@@ -115,7 +115,7 @@ class HomeView extends GetView<HomeController> {
                     )),
                 Expanded(
                   child: controller.filteredCourses.value.isEmpty
-                      ? Center(
+                      ? const Center(
                           child: Text("No results"),
                         )
                       : ListView.builder(
@@ -158,7 +158,7 @@ class HomeView extends GetView<HomeController> {
                                 );
                               },
                               child: Container(
-                                margin: EdgeInsets.only(bottom: 10),
+                                margin: const EdgeInsets.only(bottom: 10),
                                 height: 200,
                                 //width: 280,
                                 decoration: BoxDecoration(
@@ -166,7 +166,7 @@ class HomeView extends GetView<HomeController> {
                                   color: Colors.white,
                                 ),
                                 child: Container(
-                                  padding: EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -177,7 +177,7 @@ class HomeView extends GetView<HomeController> {
                                         children: [
                                           //SizedBox(width: 2,),
                                           Hero(
-                                            transitionOnUserGestures: true,
+                                            
                                             tag:
                                                 "courses${controller.filteredCourses[index].image_url.toString()}",
                                             child: Container(
@@ -190,7 +190,6 @@ class HomeView extends GetView<HomeController> {
                                               ),
                                               clipBehavior: Clip.antiAlias,
                                               child: CachedNetworkImage(
-                                                
                                                 fit: BoxFit.fill,
                                                 height: 70,
                                                 width: 60,
@@ -198,7 +197,6 @@ class HomeView extends GetView<HomeController> {
                                                     .filteredCourses[index]
                                                     .image_url
                                                     .toString(),
-                                                    
                                                 progressIndicatorBuilder:
                                                     (context, url,
                                                             downloadProgress) =>
@@ -208,10 +206,9 @@ class HomeView extends GetView<HomeController> {
                                                             value:
                                                                 downloadProgress
                                                                     .progress),
-                                                                  
                                                 errorWidget:
                                                     (context, url, error) =>
-                                                        Icon(Icons.error),
+                                                        const Icon(Icons.error),
                                               ),
                                             ),
                                           ),
