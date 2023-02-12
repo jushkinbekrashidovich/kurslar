@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kurslar/app/const/custom_widgets/custom_snackbars.dart';
 import 'package:kurslar/app/data/models/courses_model.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
@@ -75,6 +77,19 @@ class HomeController extends GetxController {
     }
   }
   
+
+
+   Future<void> checkPermissions() async {
+    final status = await Permission.location.status;
+    if (status.isLimited) {
+      final granted = await Permission.location.request().isGranted;
+      if (!granted) {
+        print('Location permission not granted');
+      }
+    } else {
+      print('Location permission already granted');
+    }
+  }
   @override
   void dispose() {
     // TODO: implement dispose

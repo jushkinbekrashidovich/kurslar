@@ -4,6 +4,7 @@ import 'package:kurslar/app/modules/news/controllers/news_controller.dart';
 import 'package:kurslar/app/modules/saved/controllers/saved_controller.dart';
 import 'package:kurslar/app/modules/settings/controllers/settings_controller.dart';
 
+import '../../map_screen/controllers/map_screen_controller.dart';
 import '../controllers/main_controller.dart';
 
 class MainBinding extends Bindings {
@@ -24,5 +25,6 @@ class MainBinding extends Bindings {
     Get.lazyPut<NewsController>(
       () => NewsController(),
     );
+    
   }
 }

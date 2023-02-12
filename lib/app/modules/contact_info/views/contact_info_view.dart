@@ -23,9 +23,11 @@ class ContactInfoView extends GetView<ContactInfoController> {
         child: ListView(
           children: [
             SizedBox(
-              height: 30,
+              height: 100,
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   height: 250,
@@ -46,7 +48,7 @@ class ContactInfoView extends GetView<ContactInfoController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Kontakt",
+                        "Biz bilan bog'laning",
                         style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w800, fontSize: 16),
                       ),

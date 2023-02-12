@@ -27,42 +27,48 @@ class SettingsView extends GetView<SettingsController> {
             SizedBox(
               height: 10,
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(10),
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.blue,
-                    Colors.pink.shade300,
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: ListTile(
-                title: const Text(
-                  "O'quv markaz vakilimisiz?",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
-                ),
-                trailing: const Icon(CupertinoIcons.forward),
-                subtitle: const Text(
-                  "Biz bilan bog'laning!",
-                  style: TextStyle(color: AppColors.black),
-                ),
-                leading: RawMaterialButton(
-                  constraints: const BoxConstraints(maxHeight: 40, maxWidth: 40),
-                  onPressed: () {
-                    Get.toNamed(Routes.CONTACT_INFO);
-                  },
-                  elevation: 0.0,
-                  fillColor: AppColors.background,
-                  child:  Icon(
-                    CupertinoIcons.person,
-                    size: 20,
+            InkWell(
+              onTap: (){
+                Get.toNamed(Routes.CONTACT_INFO);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.blue,
+                      Colors.pink.shade300,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                  padding: EdgeInsets.all(8.0),
-                  shape: CircleBorder(),
+                ),
+                child: ListTile(
+                  title: const Text(
+                    "O'quv markaz vakilimisiz?",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                  ),
+                  trailing: const Icon(CupertinoIcons.forward),
+                  subtitle: const Text(
+                    "Biz bilan bog'laning!",
+                    style: TextStyle(color: AppColors.black),
+                  ),
+                  leading: RawMaterialButton(
+                    constraints: const BoxConstraints(maxHeight: 40, maxWidth: 40),
+                    onPressed: () {
+                      Get.toNamed(Routes.CONTACT_INFO);
+                      
+                    },
+                    elevation: 0.0,
+                    fillColor: AppColors.background,
+                    child:  Icon(
+                      CupertinoIcons.person,
+                      size: 20,
+                    ),
+                    padding: EdgeInsets.all(8.0),
+                    shape: CircleBorder(),
+                  ),
                 ),
               ),
             ),

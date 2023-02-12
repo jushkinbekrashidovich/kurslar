@@ -15,6 +15,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/main/bindings/main_binding.dart';
 import '../modules/main/views/main_view.dart';
+import '../modules/map_screen/bindings/map_screen_binding.dart';
+import '../modules/map_screen/views/map_screen_view.dart';
 import '../modules/news/bindings/news_binding.dart';
 import '../modules/news/views/news_view.dart';
 import '../modules/news_details/bindings/news_details_binding.dart';
@@ -100,6 +102,11 @@ class AppPages {
       name: _Paths.CONTACT_INFO,
       page: () => ContactInfoView(),
       binding: ContactInfoBinding(),
+    ),
+    GetPage(
+      name: _Paths.MAP_SCREEN,
+      page: () => MapScreenView(),
+      binding: MapScreenBinding(),
     ),
   ];
 }

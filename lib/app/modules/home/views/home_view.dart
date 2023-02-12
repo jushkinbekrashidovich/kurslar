@@ -82,6 +82,39 @@ class HomeView extends GetView<HomeController> {
               margin: const EdgeInsets.all(10),
               alignment: Alignment.topCenter,
               child: Column(children: [
+                InkWell(
+                  onTap: () {
+                    //controller.checkPermissions();
+                    Get.toNamed(Routes.MAP_SCREEN);
+
+                   // Get.toNamed(Routes.MAP_SCREEN);
+                  },
+                  child: Container(
+                    height: 50,
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.shade300,
+                          offset: Offset(2.0, 3.0),
+                          blurRadius: 10.0,
+                        ),
+                      ],
+                    ),
+                    margin: EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+                    child: Row(
+                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(CupertinoIcons.search, color: AppColors.mainColor7,),
+                        SizedBox(width: 40,),
+                        Text("Yaqindagi kurslar"),
+                      ],
+                    ),
+                  ),
+                ),
                 Visibility(
                     visible: controller.isLoading.value,
                     child: Container(
@@ -113,6 +146,8 @@ class HomeView extends GetView<HomeController> {
                             ),
                           )),
                     )),
+               
+                
                 Expanded(
                   child: controller.filteredCourses.value.isEmpty
                       ? const Center(
