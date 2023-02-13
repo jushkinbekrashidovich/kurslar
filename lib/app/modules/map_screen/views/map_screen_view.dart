@@ -25,13 +25,13 @@ class MapScreenView extends GetView<MapScreenController> {
           controller.googleMapController.animateCamera(CameraUpdate.newCameraPosition(
             CameraPosition(
               target:
-                  LatLng(41.36745117319493, 69.29350754410356),
+                  LatLng(controller.currentPosition.latitude, controller.currentPosition.longitude),
               zoom: 90.0,
             ),
           ));
         },
         initialCameraPosition: CameraPosition(
-          target: LatLng(41.36745117319493, 69.29350754410356),
+          target: LatLng(0, 0),
           zoom: 90.0,
         ),
         markers: Get.find<HomeController>().filteredCourses.map((CoursesModel coursePlaces) {
@@ -42,7 +42,6 @@ class MapScreenView extends GetView<MapScreenController> {
               title: "Hiiii"+coursePlaces.school_name.toString(),
               snippet: "Hiaiaiiaiiaiai"
             ),
-            
           );
         }).toSet(),
       ),
