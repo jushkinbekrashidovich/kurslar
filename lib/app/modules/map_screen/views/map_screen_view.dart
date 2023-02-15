@@ -15,52 +15,38 @@ import '../controllers/map_screen_controller.dart';
 class MapScreenView extends GetView<MapScreenController> {
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
-        appBar: AppBar(
-          title: Text('Map '),
-          centerTitle: true,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('MapScreenView'),
+        centerTitle: true,
+      ),
+      body: GoogleMap(
+        mapType: MapType.normal,
+        onMapCreated: (GoogleMapController controllerNew) {
+          controller.googleMapController = controllerNew;
+          controller.googleMapController.animateCamera(CameraUpdate.newCameraPosition(
+            CameraPosition(
+              target:
+                  LatLng(41.36745117319493, 69.29350754410356),
+              zoom: 90.0,
+            ),
+          ));
+        },
+        initialCameraPosition: CameraPosition(
+          target: LatLng(41.36745117319493, 69.29350754410356),
+          zoom: 90.0,
         ),
-        body: controller.isLocationRetrieved.value
-            ? GoogleMap(
-                myLocationButtonEnabled: true,
-                myLocationEnabled: true,
-                mapType: MapType.normal,
-                onMapCreated: (GoogleMapController controllerNew) {
-                  controller.googleMapController = controllerNew;
-                  controller.googleMapController
-                      .animateCamera(CameraUpdate.newCameraPosition(
-                    CameraPosition(
-                      target: LatLng(controller.currentPosition.latitude,
-                          controller.currentPosition.longitude),
-                      zoom: 15.0,
-                    ),
-                  ));
-                },
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(controller.currentPosition.latitude,
-                      controller.currentPosition.longitude),
-                  zoom: 15.0,
-                ),
-                markers: Get.find<HomeController>()
-                    .filteredCourses
-                    .map((CoursesModel coursePlaces) {
-                  return Marker(
-                    markerId: MarkerId(coursePlaces.school_name.toString()),
-                    icon: controller.customMarker! ,
-                    position: LatLng(
-                        double.parse(coursePlaces.latitude_location.toString()),
-                        double.parse(
-                            coursePlaces.longtitude_location.toString())),
-                    infoWindow: InfoWindow(
-                        title:  coursePlaces.school_name.toString(),
-                        snippet: coursePlaces.address.toString()),
-                  );
-                }).toSet(),
-              )
-            : Center(
-                child: CircularProgressIndicator(),
-              ),
+        markers: Get.find<HomeController>().filteredCourses.map((CoursesModel coursePlaces) {
+          return Marker(
+            markerId: MarkerId(coursePlaces.school_name.toString()),
+            position: LatLng(double.parse(coursePlaces.latitude_location.toString()), double.parse(coursePlaces.longtitude_location.toString())),
+            infoWindow: InfoWindow(
+              title: "Hiiii"+coursePlaces.school_name.toString(),
+              snippet: "Hiaiaiiaiiaiai"
+            ),
+            
+          );
+        }).toSet(),
       ),
     );
   }

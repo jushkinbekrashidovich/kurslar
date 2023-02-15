@@ -50,3 +50,4 @@ class MapScreenController extends GetxController {
   }
 }
 }
+
