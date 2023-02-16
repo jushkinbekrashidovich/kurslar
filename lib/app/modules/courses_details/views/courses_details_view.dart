@@ -233,7 +233,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                       letterSpacing: 0.1,
                       fontWeight: FontWeight.w500,
                     ),
-                    maxLines: controller.expand.value ? 10 : 3,
+                    maxLines: controller.expand.value ? 100 : 3,
                     overflow: controller.expand.value
                         ? TextOverflow.visible
                         : TextOverflow.fade,

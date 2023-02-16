@@ -18,7 +18,7 @@ class MapScreenView extends GetView<MapScreenController> {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          title: Text('Mapaa '),
+          title: const Text("Sizga yaqin o'quv markazlar"),
           centerTitle: true,
         ),
         body: controller.isLocationRetrieved.value

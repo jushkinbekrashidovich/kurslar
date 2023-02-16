@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -108,8 +109,8 @@ class HomeView extends GetView<HomeController> {
                     child: Row(
                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(CupertinoIcons.search, color: AppColors.mainColor7,),
-                        SizedBox(width: 40,),
+                        Image.asset("assets/icon_map1.png", height: 39,),
+                        SizedBox(width: 30,),
                         Text("Yaqindagi kurslar"),
                       ],
                     ),
