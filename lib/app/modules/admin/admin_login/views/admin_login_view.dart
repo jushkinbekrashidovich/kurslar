@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:kurslar/app/const/app_colors.dart';
+import 'package:kurslar/app/const/custom_widgets/custom_admin_text_fileds.dart';
 import 'package:kurslar/app/routes/app_pages.dart';
 
 import '../controllers/admin_login_controller.dart';
@@ -20,29 +21,7 @@ class AdminLoginView extends GetView<AdminLoginController> {
           // crossAxisAlignment: CrossAxisAlignment.stretch,
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 48,
-              child: TextField(
-                cursorColor: AppColors.mainColor7,
-                controller: controller.emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  hintText: "Email",
-                  hintStyle: TextStyle(color: AppColors.grey),
-                  //labelText: 'Email',
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
+            CustomAdminTextField(hintText: "Email", controller: controller.emailController),
             SizedBox(height: 16),
             SizedBox(
               height: 48,
