@@ -35,18 +35,18 @@ class CoursesModel {
   factory CoursesModel.fromJson(Map<String, dynamic> json) {
     return CoursesModel(
       //post_id: json['post_id'],
-      image_url: json['image_url'],
-      school_name: json['school_name'],
-      address: json['address'],
-      latitude_location: json['latitude_location'],
-      longtitude_location: json['longtitude_location'],
-      phone_number: json['phone_number'],
-      description: json['description'],
-      telegram_link: json['telegram_link'],
-      instagram_link: json['instagram_link'],
-      website_link: json['website_link'],
-      facebook_link: json['facebook_link'],
-      subjects: List<String>.from(json['subjects']),
+      image_url: json['image_url'] ?? "https://firebasestorage.googleapis.com/v0/b/kurslar-cee29.appspot.com/o/image_not_found.png?alt=media&token=ba09c460-f653-4b19-9e4e-b680430de238",
+      school_name: json['school_name']??"O'quv markaz nomi topilmadi",
+      address: json['address'] ?? "",
+      latitude_location: json['latitude_location']??"",
+      longtitude_location: json['longtitude_location']??"",
+      phone_number: json['phone_number']??"",
+      description: json['description']??"",
+      telegram_link: json['telegram_link']??"",
+      instagram_link: json['instagram_link']??"",
+      website_link: json['website_link']??"",
+      facebook_link: json['facebook_link']??"",
+      subjects: List<String>.from(json['subjects']??""),
     );
   }
 

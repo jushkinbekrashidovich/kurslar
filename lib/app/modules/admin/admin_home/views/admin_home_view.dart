@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:kurslar/app/const/app_colors.dart';
+import 'package:kurslar/app/const/custom_services/custom_snackbar.dart';
 import 'package:kurslar/app/const/custom_widgets/custom_admin_text_fileds.dart';
 import 'package:kurslar/app/const/custom_widgets/custom_sub_title.dart';
 
@@ -39,57 +40,60 @@ class AdminHomeView extends GetView<AdminHomeController> {
                   height: 18,
                 ),
                 CustomAdminTextField(
-                    hintText: "ImageUrl", controller: controller.titleController),
+                    hintText: "ImageUrl", controller: controller.imageUrl),
                 const SizedBox(
                   height: 18,
                 ),
                 CustomAdminTextField(
-                    hintText: "PhoneNumber", controller: controller.titleController),
+                    hintText: "PhoneNumber",
+                    controller: controller.phoneNumber),
                 const SizedBox(
                   height: 18,
                 ),
                 CustomAdminTextField(
-                    hintText: "Description", controller: controller.titleController),
+                    hintText: "Description",
+                    controller: controller.description),
                 const SizedBox(
                   height: 18,
                 ),
                 CustomAdminTextField(
-                    hintText: "Latitude", controller: controller.titleController),
-                        const SizedBox(
+                    hintText: "Latitude",
+                    controller: controller.latitudeLocation),
+                const SizedBox(
                   height: 18,
                 ),
                 CustomAdminTextField(
-                    hintText: "Longtitude", controller: controller.titleController),
-                           const SizedBox(
+                    hintText: "Longtitude",
+                    controller: controller.longtitudeLocation),
+                const SizedBox(
                   height: 18,
                 ),
                 CustomAdminTextField(
-                    hintText: "Address", controller: controller.titleController),
-                           const SizedBox(
+                    hintText: "Address", controller: controller.address),
+                const SizedBox(
                   height: 18,
                 ),
                 CustomAdminTextField(
-                    hintText: "Telegram", controller: controller.titleController),
-                           const SizedBox(
+                    hintText: "Telegram", controller: controller.telegramLink),
+                const SizedBox(
                   height: 18,
                 ),
                 CustomAdminTextField(
-                    hintText: "Facebook", controller: controller.titleController),
-                           const SizedBox(
+                    hintText: "Facebook", controller: controller.facebookLink),
+                const SizedBox(
                   height: 18,
                 ),
                 CustomAdminTextField(
-                    hintText: "Instagram", controller: controller.titleController),
-                           const SizedBox(
+                    hintText: "Instagram",
+                    controller: controller.instagramLink),
+                const SizedBox(
                   height: 18,
                 ),
                 CustomAdminTextField(
-                    hintText: "Website", controller: controller.titleController),
-                           const SizedBox(
+                    hintText: "Website", controller: controller.websiteLink),
+                const SizedBox(
                   height: 18,
                 ),
-                
-                    
                 SizedBox(
                   height: 10,
                 ),
@@ -125,7 +129,7 @@ class AdminHomeView extends GetView<AdminHomeController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width: Get.width*0.78,
+                              width: Get.width * 0.78,
                               child: CustomAdminTextField(
                                   hintText: (index + 1).toString(),
                                   controller:
@@ -144,6 +148,20 @@ class AdminHomeView extends GetView<AdminHomeController> {
                         ),
                       );
                     }),
+                ElevatedButton(
+                  onPressed: () async{
+                    try{
+                     await controller.addCourse();
+                    }catch(e){
+                      showErrorSnackbar(e.toString());
+                    }
+                    //Get.toNamed(Routes.ADMIN_HOME);
+                  },
+                  child: Text('Submit'),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.mainColor7),
+                ),
+                SizedBox(height: 90,)
               ],
             ),
           ),
