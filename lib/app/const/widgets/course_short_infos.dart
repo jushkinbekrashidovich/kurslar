@@ -29,17 +29,25 @@ class CourseShortInfos extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Hero(
-          tag:tag! ,
-          child: CachedNetworkImage(
-            height: 70,
-            width: 60,
-            imageUrl: image_url.toString(),
-            progressIndicatorBuilder: (context, url, downloadProgress) =>
-                CircularProgressIndicator(
-                    color: AppColors.mainColor7,
-                    value: downloadProgress.progress),
-            errorWidget: (context, url, error) => Icon(Icons.error),
+        Container(
+          padding: EdgeInsets.all(8),
+          
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: AppColors.background,
+          ),
+          child: Hero(
+            tag:tag! ,
+            child: CachedNetworkImage(
+              height: 70,
+              width: 60,
+              imageUrl: image_url.toString(),
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  CircularProgressIndicator(
+                      color: AppColors.mainColor7,
+                      value: downloadProgress.progress),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
           ),
         ),
         SizedBox(
@@ -50,7 +58,7 @@ class CourseShortInfos extends StatelessWidget {
           child: Text(
             school_name.toString(),
             style: GoogleFonts.poppins(
-              fontSize: 23,
+              fontSize: 21,
               fontWeight: FontWeight.w400,
               letterSpacing: 0.2,
             ),

@@ -13,7 +13,7 @@ class CustomErrorDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
         title: Text(
-          "error",
+          "Xatolik",
           style: TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
         ),

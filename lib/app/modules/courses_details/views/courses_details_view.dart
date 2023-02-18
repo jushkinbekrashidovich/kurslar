@@ -39,23 +39,32 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
           elevation: 0.3,
           scrolledUnderElevation: 0.3,
           actions: [
-            IconButton(
-                onPressed: () async {
-                  try {
-                    await Share.share(
-                        'check out my website https://example.com',
-                        subject: 'Look what I made!');
-                  } catch (e) {
-                    print(e.toString());
-                    showErrorSnackbar(e.toString());
-                  }
-                },
-                icon: const Icon(
+            InkWell(
+              onTap: () async {
+                try {
+                  await Share.share('check out my website https://example.com',
+                      subject: 'Look what I made!');
+                } catch (e) {
+                  print(e.toString());
+                  showErrorSnackbar(e.toString());
+                }
+              },
+              child: Container(
+                height: 40,
+                padding: EdgeInsets.only(bottom: 5, left: 7, right: 7, top: 2),
+                margin: EdgeInsets.only(),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.background),
+                child: const Icon(
                   CupertinoIcons.share,
                   size: 26,
-                )),
+                ),
+              ),
+            ),
             const SizedBox(
-              width: 2,
+              width: 10,
             ),
           ],
         ),

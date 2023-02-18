@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:kurslar/app/const/app_colors.dart';
+import 'package:kurslar/app/routes/app_pages.dart';
 
 import '../controllers/about_app_controller.dart';
 
@@ -13,6 +14,14 @@ class AboutAppView extends GetView<AboutAppController> {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         title: Text('Ilova haqida'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.toNamed(Routes.ADMIN_LOGIN);
+            },
+            icon: const Icon(Icons.admin_panel_settings, size: 29,),
+          ),
+        ],
         centerTitle: true,
       ),
       body: ListView(
@@ -35,7 +44,7 @@ class AboutAppView extends GetView<AboutAppController> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: AppColors.background),
-            child: Text("About the app"*10000),
+            child: Text("About the app" * 10000),
           ),
           SizedBox(
             height: 20,
@@ -47,7 +56,10 @@ class AboutAppView extends GetView<AboutAppController> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(9),
                 color: AppColors.background),
-            child: Text("Version 1.1.1", style: TextStyle(fontWeight: FontWeight.bold),),
+            child: Text(
+              "Version 1.1.1",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),

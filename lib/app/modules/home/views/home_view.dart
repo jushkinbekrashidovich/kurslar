@@ -219,10 +219,11 @@ class HomeView extends GetView<HomeController> {
                                             child: Container(
                                               height: 80,
                                               width: 70,
+                                              padding: EdgeInsets.all(8),
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(7),
-                                                color: Colors.white,
+                                                color: AppColors.background,
                                               ),
                                               clipBehavior: Clip.antiAlias,
                                               child: CachedNetworkImage(
@@ -364,7 +365,7 @@ class HomeView extends GetView<HomeController> {
                                                       .subjects!.length >=
                                                   7
                                               ? const Text(
-                                                  'and more...',
+                                                  'va yana...',
                                                   style: TextStyle(
                                                       color:
                                                           AppColors.mainColor7,

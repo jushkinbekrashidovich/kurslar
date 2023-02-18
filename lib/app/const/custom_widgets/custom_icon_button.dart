@@ -22,10 +22,8 @@ class CustomIconButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(9),
         decoration: BoxDecoration(
-          border: Border.all(
-            width: 1.2,
-            color: AppColors.mainColor,
-          ),
+         color: AppColors.background,
+
           borderRadius: BorderRadius.circular(9),
         ),
         height: 45,
@@ -42,6 +40,7 @@ class CustomIconButton extends StatelessWidget {
               style: GoogleFonts.inter(
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
+                color: AppColors.mainColor7
               ),
               textAlign: TextAlign.center,
             )

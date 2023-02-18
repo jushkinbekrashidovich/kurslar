@@ -3,6 +3,10 @@ import 'package:get/get.dart';
 import '../data/models/courses_details_argument.dart';
 import '../modules/about_app/bindings/about_app_binding.dart';
 import '../modules/about_app/views/about_app_view.dart';
+import '../modules/admin_home/bindings/admin_home_binding.dart';
+import '../modules/admin_home/views/admin_home_view.dart';
+import '../modules/admin_login/bindings/admin_login_binding.dart';
+import '../modules/admin_login/views/admin_login_view.dart';
 import '../modules/contact_info/bindings/contact_info_binding.dart';
 import '../modules/contact_info/views/contact_info_view.dart';
 import '../modules/courses_details/bindings/courses_details_binding.dart';
@@ -107,6 +111,16 @@ class AppPages {
       name: _Paths.MAP_SCREEN,
       page: () => MapScreenView(),
       binding: MapScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADMIN_LOGIN,
+      page: () => AdminLoginView(),
+      binding: AdminLoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADMIN_HOME,
+      page: () => AdminHomeView(),
+      binding: AdminHomeBinding(),
     ),
   ];
 }

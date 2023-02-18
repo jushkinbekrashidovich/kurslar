@@ -53,7 +53,7 @@ class CustomSubtitle extends StatelessWidget {
       child: Text(
         subtitle,
         style: TextStyle(
-            fontSize: 14, fontWeight: FontWeight.w400, color: Colors.blueGrey),
+            fontSize: 13, fontWeight: FontWeight.w400, color: Colors.blueGrey),
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.center,
       ),

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 void showErrorSnackbar(String errorMsg, {int timeout = 2500}) {
   Get.snackbar(
-    "error",
+    "Ma'lumot mavjud emas",
     errorMsg,
     colorText: Colors.white,
     margin: EdgeInsets.fromLTRB(10, 30, 10, 10),
@@ -16,18 +16,18 @@ void showErrorSnackbar(String errorMsg, {int timeout = 2500}) {
     //shouldIconPulse: true,
     animationDuration: Duration(milliseconds: 300),
     icon: Icon(
-      Icons.cancel,
+      Icons.info,
       color: Colors.white,
       size: 35,
     ),
     snackPosition: SnackPosition.TOP,
-    backgroundColor: Colors.red,
+    backgroundColor: Colors.black87,
   );
 }
 
 void showSuccessSnackbar(String successMsg, {int timeout = 2500}) {
   Get.snackbar(
-    "info",
+    "Ma'lumot topilmadi",
     successMsg,
     borderColor: Colors.black,
     boxShadows: [

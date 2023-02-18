@@ -17,6 +17,8 @@ abstract class Routes {
   static const RATE_APP = _Paths.RATE_APP;
   static const CONTACT_INFO = _Paths.CONTACT_INFO;
   static const MAP_SCREEN = _Paths.MAP_SCREEN;
+  static const ADMIN_LOGIN = _Paths.ADMIN_LOGIN;
+  static const ADMIN_HOME = _Paths.ADMIN_HOME;
 }
 
 abstract class _Paths {
@@ -35,4 +37,6 @@ abstract class _Paths {
   static const RATE_APP = '/rate-app';
   static const CONTACT_INFO = '/contact-info';
   static const MAP_SCREEN = '/map-screen';
+  static const ADMIN_LOGIN = '/admin-login';
+  static const ADMIN_HOME = '/admin-home';
 }
