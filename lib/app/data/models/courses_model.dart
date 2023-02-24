@@ -1,19 +1,48 @@
-class CoursesModel {
+import 'package:hive/hive.dart';
+ 
+ part 'courses_model.g.dart';
+ 
+ @HiveType(typeId: 0)
+
+ class CoursesModel {
+  @HiveField(0)
   String? post_id;
 
+  @HiveField(1)
   String? image_url;
-  String? school_name;
-  String? address;
-  String? latitude_location;
-  String? longtitude_location;
-  String? phone_number;
-  String? description;
 
-  String? telegram_link;
-  String? instagram_link;
-  String? website_link;
-  String? facebook_link;
+  @HiveField(2)
+  String? school_name;
+
+  @HiveField(3)
+  String? address;
+
+  @HiveField(4)
+  String? latitude_location;
+
+  @HiveField(5)
+  String? longtitude_location;
+
+  @HiveField(6)
+  String? phone_number;
+
+  @HiveField(7)
+  String? description;
   
+  @HiveField(8)
+  String? telegram_link;
+
+  @HiveField(9)
+  String? instagram_link;
+
+  @HiveField(10)
+  String? website_link;
+
+  @HiveField(11)
+  String? facebook_link;
+
+
+  @HiveField(12)
   List<String>? subjects;
 
   CoursesModel({

@@ -5,8 +5,11 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kurslar/app/const/custom_widgets/custom_text_field.dart';
 import 'package:kurslar/app/data/models/courses_details_argument.dart';
+import 'package:kurslar/app/data/models/courses_model.dart';
 import 'package:kurslar/app/modules/courses_details/views/courses_details_view.dart';
 
 import '../../../const/app_colors.dart';
@@ -154,237 +157,253 @@ class HomeView extends GetView<HomeController> {
                       ? const Center(
                           child: Text("No results"),
                         )
-                      : ListView.builder(
+                      : ValueListenableBuilder(
+                        valueListenable: Hive.box<CoursesModel>('favorites').listenable(),
 
-                          //shrinkWrap: true,
-                          itemCount: controller.filteredCourses.length,
-                          itemBuilder: (context, index) {
-                            return InkWell(
-                              onTap: () {
-                                Get.toNamed(
-                                  Routes.COURSES_DETAILS,
-                                  arguments: CoursesDetailsArguments(
-                                    address: controller
-                                        .filteredCourses[index].address,
-                                    phone_number: controller
-                                        .filteredCourses[index].phone_number,
-                                    school_name: controller
-                                        .filteredCourses[index].school_name,
-                                    description: controller
-                                        .filteredCourses[index].description,
-                                    facebook_link: controller
-                                        .filteredCourses[index].facebook_link,
-                                    website_link: controller
-                                        .filteredCourses[index].website_link,
-                                    instagram_link: controller
-                                        .filteredCourses[index].instagram_link,
-                                    telegram_link: controller
-                                        .filteredCourses[index].telegram_link,
-                                    image_url: controller
-                                        .filteredCourses[index].image_url,
-                                    latitude_location: controller
-                                        .filteredCourses[index]
-                                        .latitude_location,
-                                    longtitude_location: controller
-                                        .filteredCourses[index]
-                                        .longtitude_location,
-                                    subjects: controller
-                                        .filteredCourses[index].subjects,
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                margin: const EdgeInsets.only(bottom: 10),
-                                height: 200,
-                                //width: 280,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white,
-                                ),
-                                child: Container(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                        builder: (context, box, child) {
+                          return ListView.builder(
+
+                              //shrinkWrap: true,
+                              itemCount: controller.filteredCourses.length,
+                              itemBuilder: (context, index) {
+                                final isFavorite = box.get(index) != null;
+                                return InkWell(
+                                  onTap: () {
+                                    Get.toNamed(
+                                      Routes.COURSES_DETAILS,
+                                      arguments: CoursesDetailsArguments(
+                                        address: controller
+                                            .filteredCourses[index].address,
+                                        phone_number: controller
+                                            .filteredCourses[index].phone_number,
+                                        school_name: controller
+                                            .filteredCourses[index].school_name,
+                                        description: controller
+                                            .filteredCourses[index].description,
+                                        facebook_link: controller
+                                            .filteredCourses[index].facebook_link,
+                                        website_link: controller
+                                            .filteredCourses[index].website_link,
+                                        instagram_link: controller
+                                            .filteredCourses[index].instagram_link,
+                                        telegram_link: controller
+                                            .filteredCourses[index].telegram_link,
+                                        image_url: controller
+                                            .filteredCourses[index].image_url,
+                                        latitude_location: controller
+                                            .filteredCourses[index]
+                                            .latitude_location,
+                                        longtitude_location: controller
+                                            .filteredCourses[index]
+                                            .longtitude_location,
+                                        subjects: controller
+                                            .filteredCourses[index].subjects,
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    margin: const EdgeInsets.only(bottom: 10),
+                                    height: 200,
+                                    //width: 280,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white,
+                                    ),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          //SizedBox(width: 2,),
-                                          Hero(
-                                            
-                                            tag:
-                                                "courses${controller.filteredCourses[index].image_url.toString()}",
-                                            child: Container(
-                                              height: 80,
-                                              width: 70,
-                                              padding: EdgeInsets.all(8),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(7),
-                                                color: AppColors.background,
-                                              ),
-                                              clipBehavior: Clip.antiAlias,
-                                              child: CachedNetworkImage(
-                                                fit: BoxFit.fill,
-                                                height: 70,
-                                                width: 60,
-                                                imageUrl: controller
-                                                    .filteredCourses[index]
-                                                    .image_url
-                                                    .toString(),
-                                                progressIndicatorBuilder:
-                                                    (context, url,
-                                                            downloadProgress) =>
-                                                        CircularProgressIndicator(
-                                                            color: AppColors
-                                                                .mainColor7,
-                                                            value:
-                                                                downloadProgress
-                                                                    .progress),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        const Icon(Icons.error),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              SizedBox(
-                                                width: 126,
-                                                child: Text(
-                                                  controller
-                                                      .filteredCourses[index]
-                                                      .school_name
-                                                      .toString(),
-                                                  style: GoogleFonts.poppins(
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
+                                              //SizedBox(width: 2,),
+                                              Hero(
+                                                
+                                                tag:
+                                                    "courses${controller.filteredCourses[index].image_url.toString()}",
+                                                child: Container(
+                                                  height: 80,
+                                                  width: 70,
+                                                  padding: EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(7),
+                                                    color: AppColors.background,
+                                                  ),
+                                                  clipBehavior: Clip.antiAlias,
+                                                  child: CachedNetworkImage(
+                                                    fit: BoxFit.fill,
+                                                    height: 70,
+                                                    width: 60,
+                                                    imageUrl: controller
+                                                        .filteredCourses[index]
+                                                        .image_url
+                                                        .toString(),
+                                                    progressIndicatorBuilder:
+                                                        (context, url,
+                                                                downloadProgress) =>
+                                                            CircularProgressIndicator(
+                                                                color: AppColors
+                                                                    .mainColor7,
+                                                                value:
+                                                                    downloadProgress
+                                                                        .progress),
+                                                    errorWidget:
+                                                        (context, url, error) =>
+                                                            const Icon(Icons.error),
+                                                  ),
                                                 ),
                                               ),
-                                              Container(
-                                                width: 130,
-                                                alignment: Alignment.topLeft,
-                                                child: Text(
-                                                  controller
-                                                      .filteredCourses[index]
-                                                      .address
-                                                      .toString(),
-                                                  style: const TextStyle(
-                                                      color:
-                                                          AppColors.greyColor,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 13),
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(
+                                                    width: 126,
+                                                    child: Text(
+                                                      controller
+                                                          .filteredCourses[index]
+                                                          .school_name
+                                                          .toString(),
+                                                      style: GoogleFonts.poppins(
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                      maxLines: 2,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    width: 130,
+                                                    alignment: Alignment.topLeft,
+                                                    child: Text(
+                                                      controller
+                                                          .filteredCourses[index]
+                                                          .address
+                                                          .toString(),
+                                                      style: const TextStyle(
+                                                          color:
+                                                              AppColors.greyColor,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontSize: 13),
+                                                      maxLines: 1,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              IconButton(
+                                                onPressed: () {
+                                                  print(box.length
+                                                              .toString());
+                                                          if (isFavorite) {
+                                                            box.delete(index);
+                                                          } else {
+                                                            box.put(
+                                                                index,
+                                                                controller
+                                                          .filteredCourses[index]);
+                                                          }
+                                                },
+                                                icon: isFavorite
+                                                            ? Icon(
+                                                                CupertinoIcons
+                                                                    .bookmark_fill,
+                                                                color:
+                                                                    Colors.black,
+                                                              )
+                                                            : Icon(
+                                                                CupertinoIcons
+                                                                    .bookmark,
+                                                                color:
+                                                                    Colors.black,
+                                                              ),
                                               ),
                                             ],
                                           ),
-                                          IconButton(
-                                            onPressed: () {
-                                              controller.isFavorite.value =
-                                                  !controller.isFavorite.value;
-                                            },
-                                            icon: controller.isFavorite.value
-                                                ? const Icon(
-                                                    CupertinoIcons.bookmark,
-                                                    color: AppColors.black,
-                                                    size: 28,
-                                                  )
-                                                : const Icon(
-                                                    CupertinoIcons
-                                                        .bookmark_fill,
-                                                    size: 28,
-                                                    color: AppColors.black,
+                                          const SizedBox(
+                                            height: 15,
+                                          ),
+                                          Wrap(
+                                            spacing: 4,
+                                            runSpacing: 4,
+                                            children: [
+                                              ...(controller.filteredCourses[index]
+                                                              .subjects!.length >=
+                                                          7
+                                                      ? controller
+                                                          .filteredCourses[index]
+                                                          .subjects!
+                                                          .take(6)
+                                                      : controller
+                                                          .filteredCourses[index]
+                                                          .subjects!)
+                                                  .map((subjects) {
+                                                return Container(
+                                                  height: 28,
+                                                  width: 80,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          color:
+                                                              AppColors.mainColor7),
+                                                      borderRadius:
+                                                          BorderRadius.circular(4)),
+                                                  child: Center(
+                                                    child: FittedBox(
+                                                      fit: BoxFit.scaleDown,
+                                                      child: Text(
+                                                        subjects,
+                                                        style: const TextStyle(
+                                                            color: AppColors
+                                                                .mainColor7,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize: 12),
+                                                        textAlign: TextAlign.center,
+                                                        maxLines: 1,
+                                                        overflow:
+                                                            TextOverflow.ellipsis,
+                                                      ),
+                                                    ),
                                                   ),
+                                                );
+                                              }),
+                                              controller.filteredCourses[index]
+                                                          .subjects!.length >=
+                                                      7
+                                                  ? const Text(
+                                                      'va yana...',
+                                                      style: TextStyle(
+                                                          color:
+                                                              AppColors.mainColor7,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontSize: 12),
+                                                    )
+                                                  : Container()
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 4,
                                           ),
                                         ],
                                       ),
-                                      const SizedBox(
-                                        height: 15,
-                                      ),
-                                      Wrap(
-                                        spacing: 4,
-                                        runSpacing: 4,
-                                        children: [
-                                          ...(controller.filteredCourses[index]
-                                                          .subjects!.length >=
-                                                      7
-                                                  ? controller
-                                                      .filteredCourses[index]
-                                                      .subjects!
-                                                      .take(6)
-                                                  : controller
-                                                      .filteredCourses[index]
-                                                      .subjects!)
-                                              .map((subjects) {
-                                            return Container(
-                                              height: 28,
-                                              width: 80,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color:
-                                                          AppColors.mainColor7),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                              child: Center(
-                                                child: FittedBox(
-                                                  fit: BoxFit.scaleDown,
-                                                  child: Text(
-                                                    subjects,
-                                                    style: const TextStyle(
-                                                        color: AppColors
-                                                            .mainColor7,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: 12),
-                                                    textAlign: TextAlign.center,
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          }),
-                                          controller.filteredCourses[index]
-                                                      .subjects!.length >=
-                                                  7
-                                              ? const Text(
-                                                  'va yana...',
-                                                  style: TextStyle(
-                                                      color:
-                                                          AppColors.mainColor7,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 12),
-                                                )
-                                              : Container()
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 4,
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ),
-                            );
-                          }),
+                                );
+                              });
+                        }
+                      ),
                 ),
               ]),
             ),
