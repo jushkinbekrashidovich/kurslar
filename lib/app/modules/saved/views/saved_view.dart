@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,8 +17,9 @@ class SavedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: AppColors.white,
       appBar: AppBar(
-        title: const Text('Saved View'),
+        title: const Text("Saqlangan o'quv kurslar"),
         centerTitle: true,
       ),
       body: ValueListenableBuilder(
@@ -25,17 +27,28 @@ class SavedView extends StatelessWidget {
           builder: (context, box, child) {
             final eduPosts = box.values.toList();
             if (eduPosts.isEmpty) {
-              return const Center(
-                child: Text("No saved"),
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                SizedBox(
+                      height: 140, child: Image.asset("assets/no_saved.png")),
+                      SizedBox(height: 10,),
+                  Text("Sizda saqlangan kurslar mavjud emas!", style: GoogleFonts.poppins(fontSize: 19, color: AppColors.black, fontWeight: FontWeight.w600), textAlign: TextAlign.center,),
+                  SizedBox(height: 10,),
+                  Text(
+                      "Agar siz qidiruv orqali o'quv markazlarni topsangiz, ularni qayta topish oson bo'lishi uchun uni saqlanganlarga qo'shishingiz mumkin", style: GoogleFonts.poppins(fontSize: 12, color: AppColors.greyColor, fontWeight:FontWeight.w500 ),textAlign: TextAlign.center,),
+                 
+                ],
               );
             }
             return ListView.builder(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
                 itemCount: eduPosts.length,
                 itemBuilder: (context, index) {
                   final eduEachPost = eduPosts[index];
                   final isFavorite = box.get(index) != null;
-                  
+
                   return InkWell(
                     onTap: () {
                       Get.toNamed(
@@ -160,8 +173,7 @@ class SavedView extends StatelessWidget {
                               spacing: 4,
                               runSpacing: 4,
                               children: [
-                                ...(
-                                  eduEachPost.subjects!.length >= 7
+                                ...(eduEachPost.subjects!.length >= 7
                                         ? eduEachPost.subjects!.take(6)
                                         : eduEachPost.subjects!)
                                     .map((subjects) {

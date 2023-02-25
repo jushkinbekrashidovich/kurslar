@@ -17,7 +17,7 @@ class SettingsView extends GetView<SettingsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SettingsView'),
+        title: Text('Sozlamalar'),
         centerTitle: true,
       ),
       body: Padding(
@@ -37,8 +37,8 @@ class SettingsView extends GetView<SettingsController> {
                   borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(
                     colors: [
-                      Colors.blue,
-                      Colors.pink.shade300,
+                      AppColors.mainColor,
+                      AppColors.mainColor,
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -47,9 +47,9 @@ class SettingsView extends GetView<SettingsController> {
                 child: ListTile(
                   title: const Text(
                     "O'quv markaz vakilimisiz?",
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.white),
                   ),
-                  trailing: const Icon(CupertinoIcons.forward),
+                  trailing: const Icon(CupertinoIcons.forward, color: AppColors.white,),
                   subtitle: const Text(
                     "Biz bilan bog'laning!",
                     style: TextStyle(color: AppColors.black),
@@ -76,7 +76,7 @@ class SettingsView extends GetView<SettingsController> {
               height: 20,
             ),
             Text(
-              "Account ma'lumotlari",
+              "Umumiy",
               style: GoogleFonts.urbanist(
                   fontWeight: FontWeight.w600, fontSize: 15),
             ),
@@ -91,11 +91,11 @@ class SettingsView extends GetView<SettingsController> {
               child: Column(
                 children: [
                   CustomListTile(
-                      title: "Murojaat",
-                      leading: CupertinoIcons.phone,
+                      title: "Ilova qanday ishlaydi?",
+                      leading: CupertinoIcons.app_badge,
                       function: () {}),
                   CustomListTile(
-                      title: "Murojaat",
+                      title: "Biz bilan bog'lanish",
                       leading: CupertinoIcons.phone,
                       function: () {}),
                 ],

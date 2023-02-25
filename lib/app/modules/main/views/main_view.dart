@@ -44,22 +44,22 @@ class MainView extends GetView<MainController> {
             items: [
               _bottomNavigationBarItem(
                 icon: 'home',
-                label: "Home".tr,
+                label: "Bosh Sahifa",
                 activeIcon: 'home_active',
               ),
               _bottomNavigationBarItem(
                 icon: 'saved',
-                label: "Saved".tr,
+                label: "Saqlanganlar".tr,
                 activeIcon: 'saved_active',
               ),
               _bottomNavigationBarItem(
                 icon: 'news',
-                label: "News".tr,
+                label: "Maqolalar".tr,
                 activeIcon: 'news_active',
               ),
               _bottomNavigationBarItem(
                 icon: 'settings',
-                label: "Settings".tr,
+                label: "Sozlamalar".tr,
                 activeIcon: 'settings_active',
               ),
             ],

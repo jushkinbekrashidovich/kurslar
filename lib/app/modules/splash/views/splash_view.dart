@@ -14,17 +14,18 @@ class SplashView extends StatelessWidget {
       PageViewModel(
         title: "Kurslar mobil ilovasiga xush kelibsiz 👋",
         body:
-            "Kurslar mobil ilovasi orqali O'zbekiston bo'ylab barcha o'quv markazlari hamda kurslarni topishingiz mumkin!",
+            "Kurslar mobil ilovasi orqali O'zbekiston bo'ylab barcha o'quv markazlari hamda kurslar haqida ma'lumotga ega bo'lishingiz mumkin!",
         image: SizedBox(
           //color: Colors.red,
-          height: 270,
+          height: 265,
           width: Get.width,
           child: SvgPicture.asset("assets/about1.svg")),
         decoration: const PageDecoration(
           imageFlex: 2,
           bodyFlex: 1,
+          footerFlex: 1,
           titleTextStyle: TextStyle(color: Colors.amber, fontSize: 20),
-          bodyTextStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 13.0),
+          bodyTextStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 12.4),
         ),
       ),
       PageViewModel(

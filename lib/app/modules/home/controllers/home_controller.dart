@@ -97,6 +97,4 @@ class HomeController extends GetxController {
     focusNode.dispose();
     super.dispose();
   }
-
-  
 }

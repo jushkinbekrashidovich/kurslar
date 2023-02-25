@@ -41,10 +41,10 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
           actions: [
             InkWell(
               onTap: () async {
-                
                 try {
-                  await Share.share("${argument.school_name}, Kurslar Ilovasi",
-                      subject: "${argument.description} Website: $argument.website_link");
+                  await Share.share(
+                    "${argument.school_name},\n\n Kurslar Ilovasini yuklab oling \n\n ${argument.description} ${argument.website_link} ",
+                  );
                 } catch (e) {
                   print(e.toString());
                   showErrorSnackbar(e.toString());
@@ -81,14 +81,14 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
               longtitude_location: argument.longtitude_location,
             ),
             Container(
-              padding: EdgeInsets.only(top: 23, right: 10, left: 10),
-              child: DottedLine(
+              padding: const EdgeInsets.only(top: 23, right: 10, left: 10),
+              child: const DottedLine(
                 dashColor: Color.fromARGB(255, 189, 204, 216),
               ),
             ),
             Container(
-              padding:
-                  EdgeInsets.only(top: 16, left: 10, right: 10, bottom: 20),
+              padding: const EdgeInsets.only(
+                  top: 16, left: 10, right: 10, bottom: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -108,8 +108,8 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                     height: 20,
                   ),
                   Container(
-                    padding: EdgeInsets.only(right: 5, left: 5),
-                    child: DottedLine(
+                    padding: const EdgeInsets.only(right: 5, left: 5),
+                    child: const DottedLine(
                       dashColor: Color.fromARGB(255, 189, 204, 216),
                     ),
                   ),
@@ -123,7 +123,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                         fontWeight: FontWeight.w500,
                         fontSize: 13),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Wrap(
@@ -188,7 +188,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                         ),
                       );
                     },
-                    child:  Container(
+                    child: Container(
                       child: const CustomTitle(
                           title: "Telefon Raqami",
                           subtitle: "+9989*...-to'liq ko'rish uchun bosing"),
@@ -227,13 +227,13 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                 children: [
                   Text(
                     "Markaz haqida".toUpperCase(),
-                    style:const TextStyle(
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 189, 204, 216),
                       fontWeight: FontWeight.w500,
                       fontSize: 13,
                     ),
                   ),
-                 const SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
@@ -255,7 +255,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
                     child: Row(
                       children: [
                         Text(
-                          "Read more",
+                          "Batafsil",
                           style: GoogleFonts.poppins(
                             color: AppColors.mainColor7,
                             fontSize: 17,

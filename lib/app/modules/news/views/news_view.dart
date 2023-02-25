@@ -18,7 +18,7 @@ class NewsView extends GetView<NewsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Yangilik va maqolalar'),
+        title: const Text('Yangilik va Maqolalar'),
         centerTitle: true,
         // actions: [
         //   IconButton(

@@ -15,7 +15,7 @@ class ContactInfoView extends GetView<ContactInfoController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('ContactInfoView'),
+        title: Text("Aloqa uchun malumotlar"),
         centerTitle: true,
       ),
       body: Padding(

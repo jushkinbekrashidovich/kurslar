@@ -17,7 +17,8 @@ class MapScreenView extends GetView<MapScreenController> {
   Widget build(BuildContext context) {
     return Obx(() {
       if (!controller.isLocationRetrieved.value) {
-        return Center(child: CircularProgressIndicator());
+        return 
+        Center(child: CircularProgressIndicator());
       }
       return Scaffold(
         appBar: AppBar(
