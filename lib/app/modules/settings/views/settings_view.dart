@@ -115,7 +115,9 @@ class SettingsView extends GetView<SettingsController> {
                   CustomListTile(
                       title: "Tez so'raladigan savollar",
                       leading: CupertinoIcons.star,
-                      function: () {}),
+                      function: () {
+                        Get.toNamed(Routes.FAQ);
+                      }),
                   CustomListTile(
                       title: "Rate the app",
                       leading: CupertinoIcons.star,

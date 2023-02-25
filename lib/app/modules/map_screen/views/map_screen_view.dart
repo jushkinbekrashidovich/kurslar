@@ -13,12 +13,14 @@ import 'package:kurslar/app/modules/home/controllers/home_controller.dart';
 import '../controllers/map_screen_controller.dart';
 
 class MapScreenView extends GetView<MapScreenController> {
+  const MapScreenView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (!controller.isLocationRetrieved.value) {
         return 
-        Center(child: CircularProgressIndicator());
+       const Center(child: CircularProgressIndicator());
       }
       return Scaffold(
         appBar: AppBar(

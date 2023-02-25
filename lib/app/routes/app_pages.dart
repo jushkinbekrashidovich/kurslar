@@ -11,6 +11,8 @@ import '../modules/contact_info/bindings/contact_info_binding.dart';
 import '../modules/contact_info/views/contact_info_view.dart';
 import '../modules/courses_details/bindings/courses_details_binding.dart';
 import '../modules/courses_details/views/courses_details_view.dart';
+import '../modules/faq/bindings/faq_binding.dart';
+import '../modules/faq/views/faq_view.dart';
 import '../modules/filter_courses/bindings/filter_courses_binding.dart';
 import '../modules/filter_courses/views/filter_courses_view.dart';
 import '../modules/filter_news/bindings/filter_news_binding.dart';
@@ -121,6 +123,11 @@ class AppPages {
       name: _Paths.ADMIN_HOME,
       page: () => AdminHomeView(),
       binding: AdminHomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.FAQ,
+      page: () => FaqView(),
+      binding: FaqBinding(),
     ),
   ];
 }

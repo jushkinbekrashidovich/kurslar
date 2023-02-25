@@ -19,6 +19,7 @@ abstract class Routes {
   static const MAP_SCREEN = _Paths.MAP_SCREEN;
   static const ADMIN_LOGIN = _Paths.ADMIN_LOGIN;
   static const ADMIN_HOME = _Paths.ADMIN_HOME;
+  static const FAQ = _Paths.FAQ;
 }
 
 abstract class _Paths {
@@ -39,4 +40,5 @@ abstract class _Paths {
   static const MAP_SCREEN = '/map-screen';
   static const ADMIN_LOGIN = '/admin-login';
   static const ADMIN_HOME = '/admin-home';
+  static const FAQ = '/faq';
 }
