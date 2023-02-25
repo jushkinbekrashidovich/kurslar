@@ -33,16 +33,9 @@ class SettingsView extends GetView<SettingsController> {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppColors.white,
+                  color: AppColors.mainColor,
                   borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.mainColor,
-                      AppColors.mainColor,
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
+                  
                 ),
                 child: ListTile(
                   title: const Text(

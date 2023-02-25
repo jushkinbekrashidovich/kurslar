@@ -72,7 +72,7 @@ class CoursesDetailsView extends GetView<CoursesDetailsController> {
         body: ListView(
           children: [
             CourseShortInfos(
-              tag: "courses${argument.image_url.toString()}",
+              image_tag: "courses${argument.image_url.toString()}",
               address: argument.address,
               school_name: argument.school_name,
               phone_number: argument.phone_number,

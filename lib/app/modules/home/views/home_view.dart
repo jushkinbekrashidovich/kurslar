@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kurslar/app/const/custom_widgets/custom_text_field.dart';
@@ -21,373 +22,379 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => GestureDetector(
-          onTap: () {
-            FocusScope.of(context).unfocus();
-          },
-          child: Scaffold(
-            appBar: AppBar(
-              title: SizedBox(
-                height: 44,
-                child: TextField(
-                  onChanged: (value) => controller.filterSearchResults(value),
-                  focusNode: controller.focusNode,
-                  keyboardType: TextInputType.text,
-                  controller: controller.searchController,
-                  cursorColor: AppColors.mainColor,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(
-                      CupertinoIcons.search,
-                      color: AppColors.mainColor7,
-                    ),
-                    contentPadding: EdgeInsets.all(12),
-                    filled: true,
-                    fillColor: AppColors.background,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        gapPadding: 0,
-                        borderSide: BorderSide.none),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(width: 2, color: AppColors.mainColor),
+    return Obx(
+      () => GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            title: SizedBox(
+              height: 44,
+              child: TextField(
+                onChanged: (value) => controller.filterSearchResults(value),
+                focusNode: controller.focusNode,
+                keyboardType: TextInputType.text,
+                controller: controller.searchController,
+                cursorColor: AppColors.mainColor,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(
+                    CupertinoIcons.search,
+                    color: AppColors.mainColor7,
+                  ),
+                  contentPadding: EdgeInsets.all(12),
+                  filled: true,
+                  fillColor: AppColors.background,
+                  border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       ),
+                      gapPadding: 0,
+                      borderSide: BorderSide.none),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(width: 2, color: AppColors.mainColor),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
                     ),
-                    hintText: "Manzil | fanlar | o'quv markaz nomi",
-                    hintStyle: TextStyle(
-                      color: AppColors.grey,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                    ),
+                  ),
+                  hintText: "Manzil | fanlar | o'quv markaz nomi",
+                  hintStyle: TextStyle(
+                    color: AppColors.grey,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
                   ),
                 ),
               ),
-              centerTitle: true,
             ),
-            body: Container(
-              margin: const EdgeInsets.all(10),
-              alignment: Alignment.topCenter,
-              child: Column(children: [
-                InkWell(
-                  onTap: () {
-                    Get.toNamed(Routes.MAP_SCREEN);
-                  },
-                  child: Container(
-                    height: 50,
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.shade300,
-                          offset: Offset(2.0, 3.0),
-                          blurRadius: 10.0,
-                        ),
-                      ],
-                    ),
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 13, vertical: 10),
-                    child: Row(
-                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.asset(
-                          "assets/icon_map1.png",
-                          height: 39,
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Text("Yaqindagi kurslar"),
-                      ],
-                    ),
+            centerTitle: true,
+          ),
+          body: Container(
+            margin: const EdgeInsets.all(10),
+            alignment: Alignment.topCenter,
+            child: Column(children: [
+              InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.MAP_SCREEN);
+                },
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade300,
+                        offset: Offset(2.0, 3.0),
+                        blurRadius: 10.0,
+                      ),
+                    ],
+                  ),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+                  child: Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        "assets/icon_map1.png",
+                        height: 39,
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      Text("Yaqindagi kurslar"),
+                    ],
                   ),
                 ),
-                Visibility(
-                    visible: controller.isLoading.value,
+              ),
+              Visibility(
+                  visible: controller.isLoading.value,
+                  child: Container(
+                    //padding: EdgeInsets.all(50),
+                    //width: 85.w,
                     child: Container(
-                      //padding: EdgeInsets.all(50),
-                      //width: 85.w,
-                      child: Container(
-                          padding: const EdgeInsets.all(15),
-                          //width: double.infinity,
-                          height: 200,
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius: BorderRadius.circular(12 * 1.0),
+                        padding: const EdgeInsets.all(15),
+                        //width: double.infinity,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.circular(12 * 1.0),
+                        ),
+                        child: const Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              CircularProgressIndicator(
+                                color: AppColors.mainColor,
+                              ),
+                              SizedBox(
+                                height: 25,
+                              ),
+                              Text(
+                                "Loading",
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
                           ),
-                          child: const Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                CircularProgressIndicator(
-                                  color: AppColors.mainColor,
-                                ),
-                                SizedBox(
-                                  height: 25,
-                                ),
-                                Text(
-                                  "Loading",
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          )),
-                    )),
-                Expanded(
-                  child: ValueListenableBuilder(
-                      valueListenable:
-                          Hive.box<CoursesModel>('favorites').listenable(),
-                      builder: (context, box, child) {
-                        return ListView.builder(
-                            itemCount: controller.filteredCourses.length,
-                            itemBuilder: (context, index) {
-                              final isFavorite = box.get(index) != null;
-                              return InkWell(
-                                onTap: () {
-                                  Get.toNamed(
-                                    Routes.COURSES_DETAILS,
-                                    arguments: CoursesDetailsArguments(
-                                      address: controller
-                                          .filteredCourses[index].address,
-                                      phone_number: controller
-                                          .filteredCourses[index].phone_number,
-                                      school_name: controller
-                                          .filteredCourses[index].school_name,
-                                      description: controller
-                                          .filteredCourses[index].description,
-                                      facebook_link: controller
-                                          .filteredCourses[index].facebook_link,
-                                      website_link: controller
-                                          .filteredCourses[index].website_link,
-                                      instagram_link: controller
-                                          .filteredCourses[index]
-                                          .instagram_link,
-                                      telegram_link: controller
-                                          .filteredCourses[index].telegram_link,
-                                      image_url: controller
-                                          .filteredCourses[index].image_url,
-                                      latitude_location: controller
-                                          .filteredCourses[index]
-                                          .latitude_location,
-                                      longtitude_location: controller
-                                          .filteredCourses[index]
-                                          .longtitude_location,
-                                      subjects: controller
-                                          .filteredCourses[index].subjects,
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  margin: const EdgeInsets.only(bottom: 10),
-                                  height: 200,
-                                  //width: 280,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white,
+                        )),
+                  )),
+              Expanded(
+                child: ValueListenableBuilder(
+                    valueListenable:
+                        Hive.box<CoursesModel>('favorites').listenable(),
+                    builder: (context, box, child) {
+                      return ListView.builder(
+                          itemCount: controller.filteredCourses.length,
+                          itemBuilder: (context, index) {
+                            final isFavorite = box.get(index) != null;
+                            return InkWell(
+                              onTap: () {
+                                Get.toNamed(
+                                  Routes.COURSES_DETAILS,
+                                  arguments: CoursesDetailsArguments(
+                                    address: controller
+                                        .filteredCourses[index].address,
+                                    phone_number: controller
+                                        .filteredCourses[index].phone_number,
+                                    school_name: controller
+                                        .filteredCourses[index].school_name,
+                                    description: controller
+                                        .filteredCourses[index].description,
+                                    facebook_link: controller
+                                        .filteredCourses[index].facebook_link,
+                                    website_link: controller
+                                        .filteredCourses[index].website_link,
+                                    instagram_link: controller
+                                        .filteredCourses[index].instagram_link,
+                                    telegram_link: controller
+                                        .filteredCourses[index].telegram_link,
+                                    image_url: controller
+                                        .filteredCourses[index].image_url,
+                                    latitude_location: controller
+                                        .filteredCourses[index]
+                                        .latitude_location,
+                                    longtitude_location: controller
+                                        .filteredCourses[index]
+                                        .longtitude_location,
+                                    subjects: controller
+                                        .filteredCourses[index].subjects,
                                   ),
-                                  child: Container(
-                                    padding: const EdgeInsets.all(10),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            //SizedBox(width: 2,),
-                                            Hero(
-                                              tag:
-                                                  "courses${controller.filteredCourses[index].image_url.toString()}",
-                                              child: Container(
-                                                height: 80,
-                                                width: 70,
-                                                padding: EdgeInsets.all(8),
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(7),
-                                                  color: AppColors.background,
-                                                ),
-                                                clipBehavior: Clip.antiAlias,
-                                                child: CachedNetworkImage(
-                                                  fit: BoxFit.fill,
-                                                  height: 70,
-                                                  width: 60,
-                                                  imageUrl: controller
-                                                      .filteredCourses[index]
-                                                      .image_url
-                                                      .toString(),
-                                                  progressIndicatorBuilder: (context,
-                                                          url,
-                                                          downloadProgress) =>
-                                                      CircularProgressIndicator(
-                                                          color: AppColors
-                                                              .mainColor7,
-                                                          value:
-                                                              downloadProgress
-                                                                  .progress),
-                                                  errorWidget: (context, url,
-                                                          error) =>
-                                                      const Icon(Icons.error),
-                                                ),
+                                );
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(bottom: 10),
+                                height: 200,
+                                //width: 280,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                ),
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          //SizedBox(width: 2,),
+                                          Hero(
+                                            tag:
+                                                "courses${controller.filteredCourses[index].image_url.toString()}",
+                                            child: Container(
+                                              height: 80,
+                                              width: 70,
+                                              padding: EdgeInsets.all(8),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(7),
+                                                color: AppColors.background,
+                                              ),
+                                              clipBehavior: Clip.antiAlias,
+                                              child: CachedNetworkImage(
+                                                fit: BoxFit.fill,
+                                                height: 70,
+                                                width: 60,
+                                                imageUrl: controller
+                                                    .filteredCourses[index]
+                                                    .image_url
+                                                    .toString(),
+                                                progressIndicatorBuilder:
+                                                    (context, url,
+                                                            downloadProgress) =>
+                                                        CircularProgressIndicator(
+                                                            color: AppColors
+                                                                .mainColor7,
+                                                            value:
+                                                                downloadProgress
+                                                                    .progress),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        const Icon(Icons.error),
                                               ),
                                             ),
-                                            const SizedBox(
-                                              width: 5,
-                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
 
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                SizedBox(
-                                                  width: 126,
-                                                  child: Text(
-                                                    controller
-                                                        .filteredCourses[index]
-                                                        .school_name
-                                                        .toString(),
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                    maxLines: 2,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                width: 126,
+                                                child: Text(
+                                                  controller
+                                                      .filteredCourses[index]
+                                                      .school_name
+                                                      .toString(),
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  maxLines: 2,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                 ),
-                                                Container(
-                                                  width: 130,
-                                                  alignment: Alignment.topLeft,
+                                              ),
+                                              Container(
+                                                width: 130,
+                                                alignment: Alignment.topLeft,
+                                                child: Text(
+                                                  controller
+                                                      .filteredCourses[index]
+                                                      .address
+                                                      .toString(),
+                                                  style: const TextStyle(
+                                                      color:
+                                                          AppColors.greyColor,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 13),
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          IconButton(
+                                            onPressed: () {
+                                              print(box.length.toString());
+                                              if (isFavorite) {
+                                                box.delete(index);
+                                              } else {
+                                                box.put(
+                                                    index,
+                                                    controller.filteredCourses[
+                                                        index]);
+                                              }
+                                            },
+                                            icon: isFavorite
+                                                ? const Icon(
+                                                    CupertinoIcons
+                                                        .bookmark_fill,
+                                                    color: Colors.black,
+                                                  )
+                                                : const Icon(
+                                                    CupertinoIcons.bookmark,
+                                                    color: Colors.black,
+                                                  ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      Wrap(
+                                        spacing: 4,
+                                        runSpacing: 4,
+                                        children: [
+                                          ...(controller.filteredCourses[index]
+                                                          .subjects!.length >=
+                                                      7
+                                                  ? controller
+                                                      .filteredCourses[index]
+                                                      .subjects!
+                                                      .take(6)
+                                                  : controller
+                                                      .filteredCourses[index]
+                                                      .subjects!)
+                                              .map((subjects) {
+                                            return Container(
+                                              height: 28,
+                                              width: 80,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color:
+                                                          AppColors.mainColor7),
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              child: Center(
+                                                child: FittedBox(
+                                                  fit: BoxFit.scaleDown,
                                                   child: Text(
-                                                    controller
-                                                        .filteredCourses[index]
-                                                        .address
-                                                        .toString(),
+                                                    subjects,
                                                     style: const TextStyle(
-                                                        color:
-                                                            AppColors.greyColor,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: 13),
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            IconButton(
-                                              onPressed: () {
-                                                print(box.length.toString());
-                                                if (isFavorite) {
-                                                  box.delete(index);
-                                                } else {
-                                                  box.put(
-                                                      index,
-                                                      controller
-                                                              .filteredCourses[
-                                                          index]);
-                                                }
-                                              },
-                                              icon: isFavorite
-                                                  ? const Icon(
-                                                      CupertinoIcons
-                                                          .bookmark_fill,
-                                                      color: Colors.black,
-                                                    )
-                                                  : const Icon(
-                                                      CupertinoIcons.bookmark,
-                                                      color: Colors.black,
-                                                    ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 15,
-                                        ),
-                                        Wrap(
-                                          spacing: 4,
-                                          runSpacing: 4,
-                                          children: [
-                                            ...(controller
-                                                            .filteredCourses[
-                                                                index]
-                                                            .subjects!
-                                                            .length >=
-                                                        7
-                                                    ? controller
-                                                        .filteredCourses[index]
-                                                        .subjects!
-                                                        .take(6)
-                                                    : controller
-                                                        .filteredCourses[index]
-                                                        .subjects!)
-                                                .map((subjects) {
-                                              return Container(
-                                                height: 28,
-                                                width: 80,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: AppColors
-                                                            .mainColor7),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4)),
-                                                child: Center(
-                                                  child: FittedBox(
-                                                    fit: BoxFit.scaleDown,
-                                                    child: Text(
-                                                      subjects,
-                                                      style: const TextStyle(
-                                                          color: AppColors
-                                                              .mainColor7,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 12),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }),
-                                            controller.filteredCourses[index]
-                                                        .subjects!.length >=
-                                                    7
-                                                ? const Text(
-                                                    'va yana...',
-                                                    style: TextStyle(
                                                         color: AppColors
                                                             .mainColor7,
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         fontSize: 12),
-                                                  )
-                                                : Container()
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 4,
-                                        ),
-                                      ],
-                                    ),
+                                                    textAlign: TextAlign.center,
+                                                    maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }),
+                                          controller.filteredCourses[index]
+                                                      .subjects!.length >=
+                                                  7
+                                              ? const Text(
+                                                  'va yana...',
+                                                  style: TextStyle(
+                                                      color:
+                                                          AppColors.mainColor7,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 12),
+                                                )
+                                              : Container()
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 4,
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              );
-                            });
-                      }),
-                ),
-              ]),
-            ),
+                              ),
+                            );
+                          });
+                    }),
+              ),
+            
+              
+            ]),
           ),
-        ));
+        bottomNavigationBar: controller.isAdLoaded.value?SizedBox(
+          height: controller.bannerAd.size.height.toDouble(),
+          width: controller.bannerAd.size.width.toDouble(),
+          child: AdWidget(
+            ad: controller.bannerAd,
+            
+          ),
+        ):SizedBox(),
+        
+        ),
+      ),
+    );
   }
 }

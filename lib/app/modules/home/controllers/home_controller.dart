@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:kurslar/app/const/custom_widgets/custom_snackbars.dart';
 import 'package:kurslar/app/data/models/courses_model.dart';
 import 'package:permission_handler/permission_handler.dart';
-
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
@@ -22,10 +22,29 @@ class HomeController extends GetxController {
 
   final RxBool isFavorite = false.obs;
 
+  late BannerAd bannerAd;
+  RxBool isAdLoaded = false.obs;
+  var adUnitId = "";
+
+  initBannerAd() {
+    bannerAd = BannerAd(
+        size: AdSize.banner,
+        adUnitId: adUnitId,
+        listener: BannerAdListener(onAdLoaded: (ad) {
+          isAdLoaded.value = true;
+        }, onAdFailedToLoad: (ad, error) {
+          ad.dispose();
+          print(error);
+        }),
+        request: AdRequest());
+    bannerAd.load();
+  }
+
   @override
   void onInit() {
     focusNode = FocusNode();
     firebaseFirestore = FirebaseFirestore.instance;
+    initBannerAd();
 
     super.onInit();
   }
@@ -63,11 +82,15 @@ class HomeController extends GetxController {
       List<CoursesModel> dummyListData = <CoursesModel>[];
       searchList.forEach((item) {
         if (item.school_name
-            .toString()
-            .toLowerCase()
-            .contains(query.toLowerCase()) ||  item.address.toString().toLowerCase().contains(query.toLowerCase())
-            ||  item.subjects!.any((subject) => subject.toLowerCase().contains(query.toLowerCase()))
-            ) {
+                .toString()
+                .toLowerCase()
+                .contains(query.toLowerCase()) ||
+            item.address
+                .toString()
+                .toLowerCase()
+                .contains(query.toLowerCase()) ||
+            item.subjects!.any((subject) =>
+                subject.toLowerCase().contains(query.toLowerCase()))) {
           dummyListData.add(item);
         }
       });
@@ -76,10 +99,8 @@ class HomeController extends GetxController {
       filteredCourses.value = courses.value;
     }
   }
-  
 
-
-   Future<void> checkPermissions() async {
+  Future<void> checkPermissions() async {
     final status = await Permission.location.status;
     if (status.isLimited) {
       final granted = await Permission.location.request().isGranted;
@@ -90,6 +111,7 @@ class HomeController extends GetxController {
       print('Location permission already granted');
     }
   }
+
   @override
   void dispose() {
     // TODO: implement dispose

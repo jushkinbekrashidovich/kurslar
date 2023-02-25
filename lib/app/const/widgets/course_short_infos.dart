@@ -12,14 +12,15 @@ import '../custom_widgets/custom_icon_button.dart';
 import '../custom_widgets/custom_sub_title.dart';
 
 class CourseShortInfos extends StatelessWidget {
-  const CourseShortInfos({super.key, required this.image_url,  required this.school_name, required this.address,required this.latitude_location, required this.longtitude_location, required this.phone_number, this.tag});
+  const CourseShortInfos({super.key, required this.image_url,  required this.school_name, required this.address,required this.latitude_location, required this.longtitude_location, required this.phone_number, this.image_tag,});
   final String? image_url;
   final String? school_name;
   final String? address;
   final String? latitude_location;
   final String? longtitude_location;
   final String? phone_number;
-  final String? tag;
+  final String? image_tag;
+  
 
 
   @override
@@ -37,7 +38,7 @@ class CourseShortInfos extends StatelessWidget {
             color: AppColors.background,
           ),
           child: Hero(
-            tag:tag! ,
+            tag:image_tag! ,
             child: CachedNetworkImage(
               height: 70,
               width: 60,
