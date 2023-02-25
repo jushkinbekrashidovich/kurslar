@@ -6,13 +6,13 @@ import 'package:hive/hive.dart';
 
  class CoursesModel {
   @HiveField(0)
-  String? post_id;
+   String? post_id;
 
   @HiveField(1)
-  String? image_url;
+   String? image_url;
 
   @HiveField(2)
-  String? school_name;
+   String? school_name;
 
   @HiveField(3)
   String? address;
@@ -64,7 +64,7 @@ import 'package:hive/hive.dart';
   factory CoursesModel.fromJson(Map<String, dynamic> json) {
     return CoursesModel(
       //post_id: json['post_id'],
-      image_url: json['image_url'] ?? "https://firebasestorage.googleapis.com/v0/b/kurslar-cee29.appspot.com/o/image_not_found.png?alt=media&token=ba09c460-f653-4b19-9e4e-b680430de238",
+      image_url: json['image_url'] ?? "",
       school_name: json['school_name']??"O'quv markaz nomi topilmadi",
       address: json['address'] ?? "",
       latitude_location: json['latitude_location']??"",

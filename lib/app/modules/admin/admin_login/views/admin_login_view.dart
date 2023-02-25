@@ -27,7 +27,7 @@ class AdminLoginView extends GetView<AdminLoginController> {
               height: 48,
               child: TextField(
                 controller: controller.passwordController,
-                obscureText: true,
+                //obscureText: true,
                 cursorColor: AppColors.mainColor7,
                 decoration: InputDecoration(
                   hintText: 'Password',
@@ -44,13 +44,18 @@ class AdminLoginView extends GetView<AdminLoginController> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
               ),
             ),
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                Get.toNamed(Routes.ADMIN_HOME);
+                if(controller.emailController.text == "helloworld" && controller.passwordController.text == "12211221"){
+                    Get.toNamed(Routes.ADMIN_HOME);
+                } else {
+                  Get.snackbar("Error", "Please contact with admin!");
+                }
+               
               },
               child: Text('Login'),
               style: ElevatedButton.styleFrom(

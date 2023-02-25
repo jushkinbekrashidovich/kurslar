@@ -6,6 +6,8 @@ class AdminLoginController extends GetxController {
   
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  final email = "helloworld";
+  final password = "21122112";
   
   final count = 0.obs;
   @override

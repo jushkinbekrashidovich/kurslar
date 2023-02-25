@@ -108,7 +108,7 @@ class HomeView extends GetView<HomeController> {
                         ),
                       ],
                     ),
-                    margin: EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+                    margin:const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
                     child: Row(
                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -163,7 +163,6 @@ class HomeView extends GetView<HomeController> {
                         builder: (context, box, child) {
                           return ListView.builder(
 
-                              //shrinkWrap: true,
                               itemCount: controller.filteredCourses.length,
                               itemBuilder: (context, index) {
                                 final isFavorite = box.get(index) != null;

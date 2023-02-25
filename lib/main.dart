@@ -12,11 +12,12 @@ import 'app/routes/app_pages.dart';
 
 
 void main() async{
-  
-  await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+   Hive.registerAdapter<CoursesModel>(CoursesModelAdapter());
   await Hive.openBox<CoursesModel>('favorites');
-  Hive.registerAdapter<CoursesModel>(CoursesModelAdapter());
+ 
   await Firebase.initializeApp();
   runApp(
     GetMaterialApp(

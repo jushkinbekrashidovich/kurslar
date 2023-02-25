@@ -30,6 +30,7 @@ class SavedView extends StatelessWidget {
               );
             }
             return ListView.builder(
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
                 itemCount: eduPosts.length,
                 itemBuilder: (context, index) {
                   final eduEachPost = eduPosts[index];
