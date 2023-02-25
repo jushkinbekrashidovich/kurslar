@@ -1,11 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kurslar/app/const/app_colors.dart';
 import 'package:kurslar/app/data/models/news_details_argument.dart';
+import 'package:share_plus/share_plus.dart';
 
+import '../../../const/custom_services/custom_snackbar.dart';
 import '../controllers/news_details_controller.dart';
 
 class NewsDetailsView extends GetView<NewsDetailsController> {
@@ -22,11 +25,43 @@ class NewsDetailsView extends GetView<NewsDetailsController> {
         padding: const EdgeInsets.all(15.0),
         child: ListView(
           children: [
-            Text(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
               arguments.publishedAt.toString(),
               style: const TextStyle(
                   color: AppColors.greyColor, fontWeight: FontWeight.bold),
             ),
+             InkWell(
+              onTap: () async {
+                try {
+                  await Share.share(
+                    "${arguments.title},\n\n Kurslar Ilovasini yuklab oling \n\n ${arguments.description} manba:${arguments.credits} ",
+                  );
+                } catch (e) {
+                  print(e.toString());
+                  showErrorSnackbar(e.toString());
+                }
+              },
+              child: Container(
+                height: 35,
+                padding: EdgeInsets.only(bottom: 5, left: 7, right: 7, top: 2),
+                margin: EdgeInsets.only(),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.mainColor7),
+                child: const Icon(
+                  CupertinoIcons.share,
+                  size: 22,
+                ),
+              ),
+            ),
+
+              ],
+            ),
+            
             const SizedBox(
               height: 15,
             ),

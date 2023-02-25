@@ -68,37 +68,10 @@ class SettingsView extends GetView<SettingsController> {
            const SizedBox(
               height: 20,
             ),
+            
+           
             Text(
-              "Umumiy",
-              style: GoogleFonts.urbanist(
-                  fontWeight: FontWeight.w600, fontSize: 15),
-            ),
-           const SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.white),
-              child: Column(
-                children: [
-                  CustomListTile(
-                      title: "Ilova qanday ishlaydi?",
-                      leading: CupertinoIcons.app_badge,
-                      function: () {}),
-                  CustomListTile(
-                      title: "Biz bilan bog'lanish",
-                      leading: CupertinoIcons.phone,
-                      function: () {}),
-                ],
-              ),
-            ),
-           const SizedBox(
-              height: 30,
-            ),
-            Text(
-              "Ilova",
+              "Ilova haqida",
               style: GoogleFonts.urbanist(
                   fontWeight: FontWeight.w600, fontSize: 15),
             ),
@@ -119,11 +92,11 @@ class SettingsView extends GetView<SettingsController> {
                         Get.toNamed(Routes.FAQ);
                       }),
                   CustomListTile(
-                      title: "Rate the app",
+                      title: "Ilovani baholash",
                       leading: CupertinoIcons.star,
                       function: () {}),
                   CustomListTile(
-                      title: "Share the app",
+                      title: "Ilovani ulashish",
                       leading: CupertinoIcons.share,
                       function: () async {
                         try {
@@ -136,7 +109,7 @@ class SettingsView extends GetView<SettingsController> {
                         }
                       }),
                   CustomListTile(
-                      title: "App info",
+                      title: "Ilova haqida",
                       leading: CupertinoIcons.info,
                       function: () {
                         Get.toNamed(Routes.ABOUT_APP);

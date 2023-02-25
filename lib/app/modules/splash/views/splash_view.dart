@@ -6,6 +6,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:kurslar/app/const/app_colors.dart';
 import 'package:kurslar/app/routes/app_pages.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../data/boxes/splash_box.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends StatelessWidget {
@@ -19,47 +20,46 @@ class SplashView extends StatelessWidget {
           //color: Colors.red,
           height: 265,
           width: Get.width,
-          child: SvgPicture.asset("assets/about1.svg")),
+          child: SvgPicture.asset("assets/intro/1.svg")),
         decoration: const PageDecoration(
           imageFlex: 2,
           bodyFlex: 1,
-          footerFlex: 1,
-          titleTextStyle: TextStyle(color: Colors.amber, fontSize: 20),
+          titleTextStyle: TextStyle(color: AppColors.mainColor, fontSize: 20),
           bodyTextStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 12.4),
         ),
       ),
       PageViewModel(
-        title: "Kurslar mobil ilovasiga xush kelibsiz 👋",
+        title: "Oson, qulay va tez!",
         body:
-            ".",
+            "Ilova orqali uyingizdan chiqmagan holda sizga yaqin bo'lgan kurslarni xarita orqali ko'rish imkoni mavjud!",
         image: SizedBox(
           //color: Colors.red,
           height: 280,
           width: Get.width,
-          child: SvgPicture.asset("assets/about2.svg")),
+          child: SvgPicture.asset("assets/intro/2.svg", )),
         decoration: const PageDecoration(
           imageFlex: 2,
           bodyFlex: 1,
-          titleTextStyle: TextStyle(color: Colors.orange),
-          bodyTextStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 20.0),
+          titleTextStyle: TextStyle(color: AppColors.mainColor, fontSize: 20.0),
+          bodyTextStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 12.4),
         ),
       ),
       PageViewModel(
         
-        title: "Title of orange text and bold page",
+        title: "Foydali maqolalar",
         body:
-            "This is a description on a page with an orange title and bold, big body.",
+            "Ilova orqali foydali maqola va yangiliklarni o'qishingiz mumkin.",
         image: SizedBox(
           //color: Colors.red,
           height: 300,
           width: Get.width,
-          child: SvgPicture.asset("assets/about3.svg")),
+          child: SvgPicture.asset("assets/intro/3.svg",)),
         decoration: const PageDecoration(
-          imageFlex: 2,
+          imageFlex: 3,
           bodyFlex: 1,
           footerFit: FlexFit.tight,
-          titleTextStyle: TextStyle(color: Colors.orange),
-          bodyTextStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 20.0),
+          titleTextStyle: TextStyle(color: AppColors.mainColor, fontSize: 22),
+          bodyTextStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.4),
         ),
       ),
     ];
@@ -68,15 +68,19 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        
         body: IntroductionScreen(
           pages: getPages(),
           isTopSafeArea: true,
           showSkipButton: true,
+          dotsDecorator: const DotsDecorator(
+            activeColor: AppColors.mainColor,
+            color: Colors.black26
+          ),
           next: const Text("Keyingisi", style: TextStyle(color: AppColors.mainColor7),),
-          skip: const Text("Asosiy sahifa", style: TextStyle(color: AppColors.mainColor7),),
+          skip: const Text("Asosiy", style: TextStyle(color: AppColors.mainColor7),),
           done: const Text("Asosiy", style: TextStyle(color: AppColors.mainColor7),),
           onDone: () {
+            SplashBox.markSeenSplash();
             Get.offAllNamed(Routes.MAIN);
             // On button pressed
           },

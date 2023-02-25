@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:kurslar/app/data/models/courses_model.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class MapScreenController extends GetxController {
@@ -12,6 +13,7 @@ class MapScreenController extends GetxController {
   late GoogleMapController googleMapController;
   RxBool isLocationRetrieved = false.obs;
   BitmapDescriptor? customMarker;
+  CoursesModel? selectedCourse;
 
   @override
   void onInit() async {

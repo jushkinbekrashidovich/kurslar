@@ -73,7 +73,7 @@ class ContactInfoView extends GetView<ContactInfoController> {
                               width: 20,
                             ),
                             Text(
-                              "+998880189977",
+                              "+998900466402",
                               style: GoogleFonts.poppins(fontSize: 16),
                             ),
                           ],
